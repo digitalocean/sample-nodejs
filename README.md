@@ -6,7 +6,7 @@ This will guide through the steps to install the mako cli and pushing this repo 
 
 To install the mako cli run:
 
-    sudo sh <<(curl -s https://mako.nyc3.digitaloceanspaces.com/install)
+    sudo sh <(curl -s https://mako.nyc3.digitaloceanspaces.com/install)
 
 ## Deploying App ##
 

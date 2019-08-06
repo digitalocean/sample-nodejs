@@ -2,7 +2,7 @@
 
 This will guide through the steps to install the mako cli and pushing this repo to a new app
 
-# Requirements
+## Requirements
 
     Docker
 

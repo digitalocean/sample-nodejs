@@ -2,6 +2,10 @@
 
 This will guide through the steps to install the mako cli and pushing this repo to a new app
 
+## Requirements
+
+    Docker
+
 ## Installing Mako ##
 
 To install the mako cli run in your Mac terminal:

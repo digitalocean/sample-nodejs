@@ -10,7 +10,7 @@ This will guide through the steps to install the mako cli and pushing this repo 
 
 To install the mako cli run in your Mac terminal:
 
-    bash <(curl -s https://mako.nyc3.digitaloceanspaces.com/install)
+    curl -fsSL mako.digitalocean.com/install | bash
 
 ## Downloading the source code
 

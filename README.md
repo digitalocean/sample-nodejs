@@ -16,7 +16,7 @@ To install the mako cli run in your Mac terminal:
 
 To download the demo app run in your Mac terminal:
 
-	git clone https://github.com/notxarb/nodejs-demo.git
+	git clone https://github.com/digitalocean-mako/nodejs-demo.git
 	cd nodejs-demo
 
 ## Deploying App ##

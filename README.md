@@ -1,6 +1,7 @@
 # Getting Started #
 
 This will guide through the steps to install the App Sail CLI (command line interface) and push this repo to a new, live app
+
 **Note: Following these steps will result in charges for the use of DigitalOcean Droplets**
 
 ## Requirements

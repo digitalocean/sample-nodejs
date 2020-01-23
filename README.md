@@ -48,6 +48,7 @@ You can view your application's logs by following these steps:
 1. Click "Logs"
 
 Alternatively, from your terminal while inside your top level application directory (e.g. nodejs-demo), run:
+
 	sail get logs --recent
 	
 Or to see a live stream of your logs, run:

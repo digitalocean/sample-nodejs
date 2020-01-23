@@ -12,11 +12,11 @@
     "debug": "~2.6.9",
     "express": "~4.16.1",
     "http-errors": "~1.6.3",
-    "jade": "~1.11.0",
     "lorem-ipsum": "^2.0.3",
     "md5": "^2.2.1",
     "mersenne-twister": "^1.1.0",
     "morgan": "~1.9.1",
+    "pug": "^2.0.4",
     "uglify-js": "^2.6.0"
   }
 }

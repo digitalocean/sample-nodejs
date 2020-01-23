@@ -18,7 +18,7 @@ To install the App Sail CLI, visit https://appsail.digitalocean.com and choose t
 
 To download the demo app run in your terminal:
 
-	git clone https://github.com/digitalocean-mako/nodejs-demo.git
+	git clone https://github.com/digitalocean-appsail/nodejs-demo.git
 	cd nodejs-demo
 
 ## Deploying App ##

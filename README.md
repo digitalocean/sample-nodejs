@@ -81,6 +81,27 @@ Save your changes locally, make sure you're in the top level directory of your a
 	
 This push should go faster than the initial one. The old version of your application will remain live during this push, and as soon as this push is complete, your live app url will point to the new version of your application. Reload your live app in your browser, and you should now see red text.  
 
+## Forking the Sample App
+
+It's great to see that change live on the web. But we usually want to save our code changes someplace safer than our local computer. Let's make our own copy (fork) of this sample app into our own Github account. If you don't already have one, you'll need to sign up for a free Github account. After than, follow these steps to fork this sample app:
+1. Visit https://github.com/digitalocean-appsail/nodejs-demo
+1. In the upper-right hand corner, click the "Fork" button
+1. Login if needed, and choose your appropriate Github account
+1. After a minute, the copy will finish and you'll see your very own copy of nodejs-demo in your Github account
+
+Now let's work against our own copy of this repository:
+1. On your local machine, delete the nodejs-demo directory and all of its contents. This means we'll loose our red body text color, but that's ok for this example.
+1. In your browser, visit the new repository you just created in Github (e.g. <yourusername>/nodejs-demo)
+1. Click the "Clone or Download" button and copy the remote URL. [Github documentation](https://help.github.com/en/github/using-git/which-remote-url-should-i-use) describes which remote URL you should use.
+
+In your terminal:
+
+	git clone https://github.com/<yourusername>/nodejs-demo.git
+	cd nodejs-demo
+	sail push
+	
+
+
 ## Deleting the App #
 
 When you no longer need this sample application running live, you can delete it by following these steps:

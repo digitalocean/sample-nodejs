@@ -100,6 +100,55 @@ In your terminal:
 	cd nodejs-demo
 	sail push
 	
+Now when you visit your live app URL you'll see black body text since we deleted the app directory we cloned from digitalocean-appsail/nodejs-demo and started from scratch with our fork.
+
+## Automatically Deploying your App with Every Code Push
+
+Oftentimes it's most convenient to deploy your app live with every code push to Github. App Sail makes it easy to use [Github Actions](https://help.github.com/en/actions) to do just that. Follow these steps to configure Github Actions to auto-deploy your app every time you `git push origin master`:
+
+	sail init pipeline
+	
+And answer the guided questions:
+
+	✓ Would you like to use GitHub Actions: Yes
+	✓ Deploy from the master branch: Yes
+	
+Now follow the instructions in the terminal output to add your APPSAIL_TOKEN as a secret to your repository. (Note: you may need to copy your App Sail token from https://appsail.digitalocean.com/go/auth for now).
+
+Following these steps has generated several configuration files that will cause Github Actions to automatically run the equivalent of a `sail push` build every time we push code to the master branch of our repository. The nice thing is that these builds will run on Github's build servers without relying at all on our local development machine. As a final step to get these Actions to work, we must commit and push these new configuration files to our repo:
+
+	git add .github
+	git add .sail
+	git commit -m "App Sail Github Actions"
+	git push origin master
+	
+With this and every subsequent push to master, our app will be deployed. To watch the action run, visit https://github.com/<yourusername>/nodejs-demo/actions. And once that action completes, you can visit your live app URL to see the newly deployed (but unchanged) app.
+
+Let's modify our app one more time and push the change to Github to see Actions at work. Edit public/stylesheets/style.css so it now looks like this:
+
+```
+body {
+  padding: 50px;
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+}
+
+h1 {
+  text-transform: uppercase;
+}
+
+a {
+  color: #00B7FF;
+}
+```
+
+Save your changes and run the following commands:
+
+	git add public/stylesheets/style.css
+	git commit -m "Uppercase h1"
+	git push origin master
+	
+Now, if we visit https://github.com/<yourusername>/nodejs-demo/actions again we'll see that a new deploy has started.
+	
 
 
 ## Deleting the App #

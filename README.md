@@ -147,7 +147,7 @@ Save your changes and run the following commands:
 	git commit -m "Uppercase h1"
 	git push origin master
 	
-Now, if we visit https://github.com/<yourusername>/nodejs-demo/actions again we'll see that a new deploy has started.
+Now, if we visit https://github.com/<yourusername>/nodejs-demo/actions again we'll see that a new deploy has started. Once it finishes, we can bring up our live app URL in the browser and see our all-caps page heading.
 	
 
 

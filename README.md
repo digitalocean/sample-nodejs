@@ -51,7 +51,9 @@ Alternatively, from your terminal while inside your top level application direct
 	sail get logs --recent
 	
 Or to see a live stream of your logs, run:
+
 	sail get logs
+
 Then visit your live app in your browser to generate some log output (which you'll see in your terminal). Use ctrl-c to stop viewing your log stream in your terminal.
 	
 To learn more about this command, run `sail get logs -h`

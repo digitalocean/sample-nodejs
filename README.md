@@ -122,7 +122,7 @@ Following these steps has generated several configuration files that will cause 
 	git commit -m "App Sail Github Actions"
 	git push origin master
 	
-With this and every subsequent push to master, our app will be deployed. To watch the action run, visit https://github.com/<yourusername>/nodejs-demo/actions. And once that action completes, you can visit your live app URL to see the newly deployed (but unchanged) app.
+With this and every subsequent push to master, our app will be deployed. To watch the action run, visit `https://github.com/<yourusername>/nodejs-demo/actions`. And once that action completes, you can visit your live app URL to see the newly deployed (but unchanged) app.
 
 Let's modify our app one more time and push the change to Github to see Actions at work. Edit public/stylesheets/style.css so it now looks like this:
 
@@ -147,7 +147,7 @@ Save your changes and run the following commands:
 	git commit -m "Uppercase h1"
 	git push origin master
 	
-Now, if we visit https://github.com/<yourusername>/nodejs-demo/actions again we'll see that a new deploy has started. Once it finishes, we can bring up our live app URL in the browser and see our all-caps page heading.
+Now, if we visit `https://github.com/<yourusername>/nodejs-demo/actions` again we'll see that a new deploy has started. Once it finishes, we can bring up our live app URL in the browser and see our all-caps page heading.
 	
 
 

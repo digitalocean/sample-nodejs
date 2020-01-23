@@ -161,5 +161,5 @@ When you no longer need this sample application running live, you can delete it 
 
 This will delete the app and destroy any underlying DigitalOcean Droplets. 
 
-**Note: If you don't delete your app, charges for the use of DigitalOcean Droplets will continue to accrue.**
+**Note: If you don't delete your app, charges for the use of DigitalOcean Droplets will continue to accrue. Also, even if you delete your app, a new push to your nodejs-demo repo on Github will trigger a new deploy which will result in DigitalOcean charges.**
 

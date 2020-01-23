@@ -23,19 +23,20 @@ To download the demo app run in your terminal:
 
 ## Deploying App ##
 
-    sail push
+	sail push
 
-It will ask for an auth key if you haven't used mako before. Retrieve it from [the auth page](https://appsail.digitalocean.com/go/auth).
+It will ask for an auth key if you haven't used the sail CLI before. Retrieve it from [the auth page](https://appsail.digitalocean.com/go/auth).
 
 Then it will ask how to configure the app.
 Answer the questions as follows:
-    ✓ Who does this app belong to: <choose your personal account or team>
-    ✓ What should this app be called: nodejs-demo
-    Let's configure your app for deployment:
-    ✓ Choose your configuration preference: Automatic...
-    ✓ Node app detected, is this correct: Yes
-    ✓ Use Node 10: Yes
-    ✓ Do you need a database: No
+
+	✓ Who does this app belong to: <choose your personal account or team>
+	✓ What should this app be called: nodejs-demo
+	Let's configure your app for deployment:
+	✓ Choose your configuration preference: Automatic...
+	✓ Node app detected, is this correct: Yes
+	✓ Use Node 10: Yes
+	✓ Do you need a database: No
 
 After that, it will go through a deploy process. Once it's done, you can open the live app or administration dashboard by following the links provided by the App Sail CLI once the push is completed.
 

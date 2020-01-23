@@ -6,7 +6,7 @@ This will guide through the steps to install the App Sail CLI (command line inte
 
 ## Requirements
 
-* Docker must be installed locally on your machine, unless you choose to build remotely via Github Actions (beyond the scope of this README)
+* Docker must be [installed locally](https://docs.docker.com/install/) on your machine, unless you choose to build remotely via Github Actions (beyond the scope of this README)
 * You need a DigitalOcean account. If you don't already have one, you can sign up at https://cloud.digitalocean.com/registrations/new
     
 

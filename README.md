@@ -79,7 +79,7 @@ Save your changes locally, make sure you're in the top level directory of your a
 
 	sail push
 	
-This push should go faster than the initial one. The old version of your application will remain live during this push, and  
+This push should go faster than the initial one. The old version of your application will remain live during this push, and as soon as this push is complete, your live app url will point to the new version of your application. Reload your live app in your browser, and you should now see red text.  
 
 ## Deleting the App #
 

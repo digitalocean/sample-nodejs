@@ -21,7 +21,7 @@ To download the demo app run in your terminal:
 	git clone https://github.com/digitalocean-appsail/nodejs-demo.git
 	cd nodejs-demo
 
-## Deploying App ##
+## Deploying the App ##
 
 	sail push
 
@@ -40,8 +40,45 @@ Answer the questions as follows:
 
 After that, it will go through a deploy process. Once it's done, you can open the live app or administration dashboard by following the links provided by the App Sail CLI once the push is completed.
 
+## Viewing Application Logs ##
 
-## Deleting App #
+You can view your application's logs by following these steps:
+1. Visit the app dashboard at https://appsail.digitalocean.com/
+1. Navigate to the nodejs-demo app
+1. Click "Logs"
+
+Alternatively, from your terminal while inside your top level application directory (e.g. nodejs-demo), run:
+	sail get logs --recent
+	
+Or to see a live stream of your logs, run:
+	sail get logs
+Then visit your live app in your browser to generate some log output (which you'll see in your terminal). Use ctrl-c to stop viewing your log stream in your terminal.
+	
+To learn more about this command, run `sail get logs -h`
+
+
+## Making a Change #
+
+Let's try making a simple change to our application and pushing that live. We'll change the body text color. Edit the file public/stylesheets/style.css so it looks like this:
+```
+body {
+  padding: 50px;
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  color: #FF0000;
+}
+
+a {
+  color: #00B7FF;
+}
+```
+
+Save your changes locally, make sure you're in the top level directory of your app (e.g. nodejs-demo) and run:
+
+	sail push
+	
+This push should go faster than the initial one. The old version of your application will remain live during this push, and  
+
+## Deleting the App #
 
 When you no longer need this sample application running live, you can delete it by following these steps:
 1. Visit the app dashboard at https://appsail.digitalocean.com/

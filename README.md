@@ -12,7 +12,7 @@ This will guide through the steps to install the App Sail CLI (command line inte
 
 ## Installing App Sail ##
 
-To install the App Sail CLI, visit https://appsail.digitalocean.com and choose to Create or Launch a new app. Follow the on-screen instructios for installing the CLI. (On Windows, download and run https://appsail.nyc3.digitaloceanspaces.com/cli/windows/AppSailSetup.exe)
+To install the App Sail CLI, visit https://appsail.digitalocean.com and choose to Create or Launch a new app. Follow the on-screen instructions for installing the CLI. (On Windows, download and run https://appsail.nyc3.digitaloceanspaces.com/cli/windows/AppSailSetup.exe)
 
 ## Downloading the Sample App Source Code
 

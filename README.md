@@ -18,8 +18,8 @@ To install the App Sail CLI, visit https://cloud.digitalocean.com/appsail and ch
 
 To download the demo app run in your terminal:
 
-	git clone https://github.com/digitalocean-appsail/nodejs-demo.git
-	cd nodejs-demo
+	git clone https://github.com/digitalocean-appsail/sample-nodejs.git
+	cd sample-nodejs
 
 ## Deploying the App ##
 
@@ -31,7 +31,7 @@ Then it will ask how to configure the app.
 Answer the questions as follows:
 
 	✓ Who does this app belong to: <choose your personal account or team>
-	✓ What should this app be called: nodejs-demo
+	✓ What should this app be called: sample-nodejs
 	Let's configure your app for deployment:
 	✓ Choose your configuration preference: Automatic...
 	✓ Node app detected, is this correct: Yes
@@ -44,10 +44,10 @@ After that, it will go through a deploy process. Once it's done, you can open th
 
 You can view your application's logs by following these steps:
 1. Visit the app dashboard at https://cloud.digitalocean.com/appsail
-1. Navigate to the nodejs-demo app
+1. Navigate to the sample-nodejs app
 1. Click "Logs"
 
-Alternatively, from your terminal while inside your top level application directory (e.g. nodejs-demo), run:
+Alternatively, from your terminal while inside your top level application directory (e.g. sample-nodejs), run:
 
 	sail get logs --recent
 	
@@ -75,7 +75,7 @@ a {
 }
 ```
 
-Save your changes locally, make sure you're in the top level directory of your app (e.g. nodejs-demo) and run:
+Save your changes locally, make sure you're in the top level directory of your app (e.g. sample-nodejs) and run:
 
 	sail push
 	
@@ -84,23 +84,23 @@ This push should go faster than the initial one. The old version of your applica
 ## Forking the Sample App
 
 It's great to see that change live on the web. But we usually want to save our code changes someplace safer than our local computer. Let's make our own copy (fork) of this sample app into our own Github account. If you don't already have one, you'll need to sign up for a free Github account. After than, follow these steps to fork this sample app:
-1. Visit https://github.com/digitalocean-appsail/nodejs-demo
+1. Visit https://github.com/digitalocean-appsail/sample-nodejs
 1. In the upper-right hand corner, click the "Fork" button
 1. Login if needed, and choose your appropriate Github account
-1. After a minute, the copy will finish and you'll see your very own copy of nodejs-demo in your Github account
+1. After a minute, the copy will finish and you'll see your very own copy of sample-nodejs in your Github account
 
 Now let's work against our own copy of this repository:
-1. On your local machine, delete the nodejs-demo directory and all of its contents. This means we'll loose our red body text color, but that's ok for this example.
-1. In your browser, visit the new repository you just created in Github (e.g. <yourusername>/nodejs-demo)
+1. On your local machine, delete the sample-nodejs directory and all of its contents. This means we'll loose our red body text color, but that's ok for this example.
+1. In your browser, visit the new repository you just created in Github (e.g. <yourusername>/sample-nodejs)
 1. Click the "Clone or Download" button and copy the remote URL. [Github documentation](https://help.github.com/en/github/using-git/which-remote-url-should-i-use) describes which remote URL you should use.
 
 In your terminal:
 
-	git clone https://github.com/<yourusername>/nodejs-demo.git
-	cd nodejs-demo
+	git clone https://github.com/<yourusername>/sample-nodejs.git
+	cd sample-nodejs
 	sail push
 	
-Now when you visit your live app URL you'll see black body text since we deleted the app directory we cloned from digitalocean-appsail/nodejs-demo and started from scratch with our fork.
+Now when you visit your live app URL you'll see black body text since we deleted the app directory we cloned from digitalocean-appsail/sample-nodejs and started from scratch with our fork.
 
 ## Automatically Deploying your App with Every Code Push
 
@@ -122,7 +122,7 @@ Following these steps has generated several configuration files that will cause 
 	git commit -m "App Sail Github Actions"
 	git push origin master
 	
-With this and every subsequent push to master, our app will be deployed. To watch the action run, visit `https://github.com/<yourusername>/nodejs-demo/actions`. And once that action completes, you can visit your live app URL to see the newly deployed (but unchanged) app.
+With this and every subsequent push to master, our app will be deployed. To watch the action run, visit `https://github.com/<yourusername>/sample-nodejs/actions`. And once that action completes, you can visit your live app URL to see the newly deployed (but unchanged) app.
 
 Let's modify our app one more time and push the change to Github to see Actions at work. Edit public/stylesheets/style.css so it now looks like this:
 
@@ -147,7 +147,7 @@ Save your changes and run the following commands:
 	git commit -m "Uppercase h1"
 	git push origin master
 	
-Now, if we visit `https://github.com/<yourusername>/nodejs-demo/actions` again we'll see that a new deploy has started. Once it finishes, we can bring up our live app URL in the browser and see our all-caps page heading.
+Now, if we visit `https://github.com/<yourusername>/sample-nodejs/actions` again we'll see that a new deploy has started. Once it finishes, we can bring up our live app URL in the browser and see our all-caps page heading.
 	
 
 
@@ -155,11 +155,11 @@ Now, if we visit `https://github.com/<yourusername>/nodejs-demo/actions` again w
 
 When you no longer need this sample application running live, you can delete it by following these steps:
 1. Visit the app dashboard at https://cloud.digitalocean.com/appsail
-1. Navigate to the nodejs-demo app
+1. Navigate to the sample-nodejs app
 1. Choose "App Config"->"Show More"
 1. Select "Delete", type your app's name, and click "Delete App".
 
 This will delete the app and destroy any underlying DigitalOcean Droplets. 
 
-**Note: If you don't delete your app, charges for the use of DigitalOcean Droplets will continue to accrue. Also, even if you delete your app, a new push to your nodejs-demo repo on Github will trigger a new deploy which will result in DigitalOcean charges.**
+**Note: If you don't delete your app, charges for the use of DigitalOcean Droplets will continue to accrue. Also, even if you delete your app, a new push to your sample-nodejs repo on Github will trigger a new deploy which will result in DigitalOcean charges.**
 

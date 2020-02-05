@@ -12,7 +12,7 @@ This will guide through the steps to install the App Sail CLI (command line inte
 
 ## Installing App Sail ##
 
-To install the App Sail CLI, visit https://appsail.digitalocean.com and choose to Create or Launch a new app. Follow the on-screen instructions for installing the CLI. (On Windows, download and run https://appsail.nyc3.digitaloceanspaces.com/cli/windows/AppSailSetup.exe)
+To install the App Sail CLI, visit https://cloud.digitalocean.com/appsail and choose to Create or Launch a new app. Follow the on-screen instructions for installing the CLI.
 
 ## Downloading the Sample App Source Code
 
@@ -25,7 +25,7 @@ To download the demo app run in your terminal:
 
 	sail push
 
-It will ask for an auth key if you haven't used the sail CLI before. Retrieve it from [the auth page](https://appsail.digitalocean.com/go/auth).
+It will ask for an auth key if you haven't used the sail CLI before. Retrieve it from [the auth page](https://cloud.digitalocean.com/appsail/auth).
 
 Then it will ask how to configure the app.
 Answer the questions as follows:
@@ -43,7 +43,7 @@ After that, it will go through a deploy process. Once it's done, you can open th
 ## Viewing Application Logs ##
 
 You can view your application's logs by following these steps:
-1. Visit the app dashboard at https://appsail.digitalocean.com/
+1. Visit the app dashboard at https://cloud.digitalocean.com/appsail
 1. Navigate to the nodejs-demo app
 1. Click "Logs"
 
@@ -113,7 +113,7 @@ And answer the guided questions:
 	✓ Would you like to use GitHub Actions: Yes
 	✓ Deploy from the master branch: Yes
 	
-Now follow the instructions in the terminal output to add your APPSAIL_TOKEN as a secret to your repository. (Note: you may need to copy your App Sail token from https://appsail.digitalocean.com/go/auth for now).
+Now follow the instructions in the terminal output to add your APPSAIL_TOKEN as a secret to your repository.
 
 Following these steps has generated several configuration files that will cause Github Actions to automatically run the equivalent of a `sail push` build every time we push code to the master branch of our repository. The nice thing is that these builds will run on Github's build servers without relying at all on our local development machine. As a final step to get these Actions to work, we must commit and push these new configuration files to our repo:
 
@@ -154,7 +154,7 @@ Now, if we visit `https://github.com/<yourusername>/nodejs-demo/actions` again w
 ## Deleting the App #
 
 When you no longer need this sample application running live, you can delete it by following these steps:
-1. Visit the app dashboard at https://appsail.digitalocean.com/
+1. Visit the app dashboard at https://cloud.digitalocean.com/appsail
 1. Navigate to the nodejs-demo app
 1. Choose "App Config"->"Show More"
 1. Select "Delete", type your app's name, and click "Delete App".

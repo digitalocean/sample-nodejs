@@ -49,15 +49,15 @@ You can view your application's logs by following these steps:
 
 Alternatively, from your terminal while inside your top level application directory (e.g. sample-nodejs), run:
 
-	sail get logs --recent
+	sail logs --recent
 	
 Or to see a live stream of your logs, run:
 
-	sail get logs
+	sail logs
 
 Then visit your live app in your browser to generate some log output (which you'll see in your terminal). Use ctrl-c to stop viewing your log stream in your terminal.
 	
-To learn more about this command, run `sail get logs -h`
+To learn more about this command, run `sail logs -h`
 
 
 ## Making a Change #

@@ -26,6 +26,18 @@ After forking the repo, you should now be viewing this README in your own github
 1. It can currently take 5-6 minutes to build this app, so please be patient. Live build logs are coming soon to provide much more feedback during deployments.
 1. Once the build completes successfully, click the "Live App" link in the header and you should see your running application in a new tab
 
+## Making Changes to Your App ##
+
+As long as you left the default Autodeploy option enabled when you first launched this app, you can now make code changes and see them automatically reflected in your live application. During these automatic deployments, your application will never pause or stop serving request because the App Platform offers zero-downtime deployments.
+
+Here's an example code change you can make for this app:
+1. Edit [style.css](public/stylesheets/style.css)
+1. Add `color: #ff0000;` into the body section of your css.
+1. Commit the change to master. Normally it's a better practice to create a new branch for your change and then merge that branch to master after review, but for this demo you can commit to master directly.
+1. Visit https://cloud.digitalocean.com/apps and navigate to your sample-nodejs app.
+1. You should see a "Building..." progress indicator, just like above.
+1. Once the build completes successfully, click the "Live App" link in the header and you should see your updated application running.
+
 ## Learn More ##
 
 You can learn more about the App Platform and how to manage and update your application at https://www.digitalocean.com/docs/apps/.

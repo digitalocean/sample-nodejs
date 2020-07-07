@@ -36,7 +36,7 @@ Here's an example code change you can make for this app:
 1. Commit the change to master. Normally it's a better practice to create a new branch for your change and then merge that branch to master after review, but for this demo you can commit to master directly.
 1. Visit https://cloud.digitalocean.com/apps and navigate to your sample-nodejs app.
 1. You should see a "Building..." progress indicator, just like above.
-1. Once the build completes successfully, click the "Live App" link in the header and you should see your updated application running.
+1. Once the build completes successfully, click the "Live App" link in the header and you should see your updated application running. You may need to force refresh the page in your browser (e.g. using Shift+Reload).
 
 ## Learn More ##
 

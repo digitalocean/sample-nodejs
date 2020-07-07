@@ -17,7 +17,7 @@ After forking the repo, you should now be viewing this README in your own github
 ## Deploying the App ##
 
 1. Visit https://cloud.digitalocean.com/apps (if you're not logged in, you may see an error message. Visit https://cloud.digitalocean.com/login directly and authenticate, then try again)
-1. Click "Launch App"
+1. Click "Launch App" or "Create App"
 1. Choose GitHub and authenticate with your GitHub credentials.
 1. Under Repository, choose this repository (e.g. <your-org>/sample-nodejs)
 1. On the next two screens, leave all the defaults unchanged.

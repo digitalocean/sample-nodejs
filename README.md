@@ -12,7 +12,7 @@ These steps will get this sample application running for you using DigitalOcean.
 
 To use all the features of App Platform, you need to be running against your own copy of this application. To make a copy, click the Fork button above and follow the on-screen instructions. In this case, you'll be forking this repo as a starting point for your own app (see [Github documentation](https://docs.github.com/en/github/getting-started-with-github/fork-a-repo) to learn more about forking repos.
 
-After forking the repo, you should now be viewing this README in your own github org (e.g. https://github.com/<your-org>/sample-nodejs)
+After forking the repo, you should now be viewing this README in your own github org (e.g. `https://github.com/<your-org>/sample-nodejs`)
 
 ## Deploying the App ##
 

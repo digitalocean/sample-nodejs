@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "node index.js"
+    "start": "node ./bin/www"
   },
   "dependencies": {
     "clean-css": "^4.1.11",

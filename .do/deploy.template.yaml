@@ -2,8 +2,7 @@ spec:
   name: sample-nodejs
   services:
   - environment_slug: node-js
-    github:
+    git:
       branch: main
-      deploy_on_push: true
-      repo: digitalocean/sample-nodejs
+      repo_clone_url: https://github.com/digitalocean/sample-nodejs.git
     name: sample-nodejs

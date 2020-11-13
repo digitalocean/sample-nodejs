@@ -6,7 +6,7 @@ These steps will get this sample application running for you using DigitalOcean.
 
 ## Requirements
 
-* You need a DigitalOcean account. If you don't already have one, you can sign up at https://cloud.digitalocean.com/registrations/new
+You need a DigitalOcean account. If you don't already have one, you can sign up at https://cloud.digitalocean.com/registrations/new
     
 ## Forking the Sample App Source Code
 

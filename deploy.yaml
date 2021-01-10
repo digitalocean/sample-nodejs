@@ -1,0 +1,30 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: api
+  labels:
+    purpose: api
+spec:
+  hostNetwork: true
+  containers:
+    - name: api
+      image: registry.digitalocean.com/gitbid/api:5c7c72a2
+      ports:
+        - containerPort: 8080
+      env:
+        - name: user
+          value: "doadmin"
+        - name: host
+          value: "gitbook-postgres-do-user-7780289-0.b.db.ondigitalocean.com"
+        - name: database
+          value: "defaultdb"
+        - name: password
+          value: "b6y4az5p5hm862i7"
+        - name: stripe
+          value: "sk_test_51I7ulLHX1rk5bSX1MK50H6Dh0XUareNF98jfCZY6QT0Xxkek3btpPg4FpAHDD6RlUZxJjtJ3ryu2yqtmGxJ7Y1SG00EgWrpU48"
+        - name: redisclienthost
+          value: "db-redis-nyc1-23161-do-user-7780289-0.b.db.ondigitalocean.com"
+        - name: redisclientport
+          value: "25061"
+        - name: rediesclientpassword
+          value: yrc09ub6yp78ztbv

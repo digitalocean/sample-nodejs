@@ -1,22 +1,37 @@
 {
-  "name": "app",
-  "version": "0.0.0",
-  "private": true,
-  "scripts": {
-    "start": "node ./bin/www"
-  },
-  "dependencies": {
-    "clean-css": "^4.1.11",
-    "constantinople": "^3.1.1",
-    "cookie-parser": "~1.4.4",
-    "debug": "~2.6.9",
-    "express": "~4.16.1",
-    "http-errors": "~1.6.3",
-    "lorem-ipsum": "^2.0.3",
-    "md5": "^2.2.1",
-    "mersenne-twister": "^1.1.0",
-    "morgan": "~1.9.1",
-    "pug": "^2.0.4",
-    "uglify-js": "^2.6.0"
-  }
+    "name": "api",
+    "version": "1.0.0",
+    "description": "Git Bid API",
+    "main": "index.js",
+    "scripts": {
+        "start": "node src/index.js"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/Git-Bid/api.git"
+    },
+    "keywords": [
+        "api"
+    ],
+    "author": "",
+    "license": "Apache-2.0",
+    "bugs": {
+        "url": "https://github.com/Git-Bid/api/issues"
+    },
+    "homepage": "https://github.com/Git-Bid/api#readme",
+    "dependencies": {
+        "body-parser": "^1.19.0",
+        "connect-redis": "^5.0.0",
+        "cookie-session": "^1.4.0",
+        "cors": "^2.8.5",
+        "dotenv": "^8.2.0",
+        "express": "^4.17.1",
+        "express-session": "^1.17.1",
+        "passport": "^0.4.1",
+        "passport-github": "^1.1.0",
+        "passport-github2": "^0.1.12",
+        "pg": "^8.5.1",
+        "redis": "^3.0.2",
+        "stripe": "^8.130.0"
+    }
 }

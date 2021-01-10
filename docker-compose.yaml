@@ -1,0 +1,25 @@
+version: "3.9"
+services:
+  database:
+    image: postgres:13.1
+    environment:
+      POSTGRES_USER: username
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: postgres
+    ports:
+      - 5432:5432
+    volumes:
+      - database-data:/var/lib/postgresql/data/
+  sessions:
+    image: redis:6.2-rc1
+  api:
+    build: .
+    ports:
+      - 8080:8080
+    depends_on:
+      - database
+      - sessions
+    env_file: .env
+  
+volumes:
+  database-data:

@@ -13,8 +13,11 @@
 name: Build and Deploy to GKE
 
 on:
-  release:
-    types: [created]
+  push:
+    branches:
+      - main
+    paths:
+      - 'gke
 
 env:
   PROJECT_ID: ${{ secrets.GKE_PROJECT }}

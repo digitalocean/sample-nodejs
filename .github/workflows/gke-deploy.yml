@@ -17,7 +17,7 @@ on:
     branches:
       - main
     paths:
-      - 'gke
+      - index.js
 
 env:
   PROJECT_ID: ${{ secrets.GKE_PROJECT }}

@@ -28,7 +28,7 @@ app.use(function(req, res, next) {
   next(createError(404));
 });
 
-app.use('/helloWorld', helloWorld);
+// app.use('/helloWorld', helloWorld);
 // app.use('/users', usersRouter);
 
 // catch 404 and forward to error handler

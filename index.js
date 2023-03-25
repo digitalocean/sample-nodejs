@@ -2,6 +2,10 @@ const express = require('express')
 const app = express()
 const port = process.env.PORT || 3000
 
+const helloWorld = require('./routes/helloWorld');
+
+app.use('/helloWorld', helloWorld);
+
 var LoremIpsum = require('lorem-ipsum').LoremIpsum;
 
 var lorem = new LoremIpsum({

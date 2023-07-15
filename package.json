@@ -1,22 +1,44 @@
 {
-  "name": "app",
-  "version": "0.0.0",
+  "name": "express-elloorld",
+  "description": "Hello World Node Express web application",
+  "version": "0.0.1",
   "private": true,
   "scripts": {
-    "start": "node ./bin/www"
+    "start": "node src/server",
+    "prod": "NODE_ENV=PRODUCTION nodemon src/server",
+    "buildrun": "npm run build && npm run prodauth",
+    "prodauth": "NODE_ENV=PRODUCTION authentication=true nodemon src/server",
+    "dev-server": "supervisor  -w server -- src/server.js",
+    "dev-server2": "supervisor --no-restart-on exit -w server -- src/server.js ",
+    "precommit": "npm run build && npm run prodauth"
   },
   "dependencies": {
-    "clean-css": "^4.1.11",
-    "constantinople": "^3.1.1",
-    "cookie-parser": "~1.4.4",
-    "debug": "~2.6.9",
-    "express": "~4.16.1",
-    "http-errors": "~1.6.3",
-    "lorem-ipsum": "^2.0.3",
-    "md5": "^2.2.1",
-    "mersenne-twister": "^1.1.0",
-    "morgan": "~1.9.1",
-    "pug": "^2.0.4",
-    "uglify-js": "^2.6.0"
+    "@sendgrid/mail": "^6.4.0",
+    "aws-sdk": "^2.771.0",
+    "body-parser": "^1.19.0",
+    "camelcase": "^5.2.0",
+    "connect-mongodb-session": "^2.2.0",
+    "cors": "^2.8.5",
+    "dotenv": "6.2.0",
+    "dotenv-expand": "5.1.0",
+    "express": "4.16.2",
+    "express-fileupload": "^1.1.6",
+    "express-session": "^1.17.0",
+    "mocha": "5.0.0",
+    "mongoose": "^5.7.7",
+    "npm-run-all": "^4.1.5",
+    "reload": "^3.0.2",
+    "supervisor": "0.12.0"
+  },
+  "devDependencies": {
+    "eslint-plugin-node": "^11.0.0"
+  },
+  "proxy": "http://localhost:3000",
+  "prettier": {
+    "singleQuote": true,
+    "trailingComma": "es5"
+  },
+  "engines": {
+    "node": ">=10.0"
   }
 }

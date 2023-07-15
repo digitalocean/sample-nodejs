@@ -48,7 +48,16 @@ app.use(
   fileupload(),
   bodyParser.json()
 );
+function isAuthorizedMiddleware(req, res, next) {
+  console.log('isAuthorizedMiddleware', req.user)
+  if (req.user !== 'impossible') {
+    console.log(54)
+    return res.status(401).send({ message: "Unauthorized" });
+  }
+  next();
+}
 
+app.use(isAuthorizedMiddleware);
 process.on('uncaughtException', (err) => {
   console.error('global exception:', err.message);
 });

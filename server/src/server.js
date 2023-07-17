@@ -48,10 +48,23 @@ app.use(
   fileupload(),
   bodyParser.json()
 );
+app.get('/api/logout', cors(), (req, res) => {
+  req.session.rep = null;
+  res.send(JSON.stringify('ok'));
+});
+
+app.post('/api/login', cors(), async (req, res) => {
+  const oldUsername = idToOldUsername(req.body.username);
+  req.session.rep = oldUsername;
+  res.json(true);
+});
+
 function isAuthorizedMiddleware(req, res, next) {
-  console.log('isAuthorizedMiddleware', req.user)
-  if (req.user !== 'impossible') {
-    console.log(54)
+  const rep = req?.session?.rep
+  if (rep) {
+    console.log(57, 'user:', rep)
+  } else {
+    console.log(67, 'no rep!')
     return res.status(401).send({ message: "Unauthorized" });
   }
   next();
@@ -73,10 +86,6 @@ app.post('/api/sign', async (req, res) => {
   res.json(await db.sign(req.session.rep, status, id));
 });
 
-app.get('/api/logout', cors(), (req, res) => {
-  req.session.rep = null;
-  res.send(JSON.stringify('ok'));
-});
 
 /* in past we used usernames for everything in database. now
 that we're using cognito, we have these ids. but for old
@@ -86,12 +95,6 @@ const idToOldUsername = id => ({
   jmetevier: 'jpm',
   mss: 'mss'
 }[id] || id);
-
-app.post('/api/login', cors(), async (req, res) => {
-  const oldUsername = idToOldUsername(req.body.username);
-  req.session.rep = oldUsername;
-  res.json(true);
-});
 
 app.options('/api/visit', cors());
 

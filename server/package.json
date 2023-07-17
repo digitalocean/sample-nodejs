@@ -8,7 +8,7 @@
     "prod": "NODE_ENV=PRODUCTION nodemon src/server",
     "buildrun": "npm run build && npm run prodauth",
     "prodauth": "NODE_ENV=PRODUCTION authentication=true nodemon src/server",
-    "dev-server": "supervisor  -w server -- src/server.js",
+    "dev-server": "supervisor -- src/server.js",
     "dev-server2": "supervisor --no-restart-on exit -w server -- src/server.js ",
     "precommit": "npm run build && npm run prodauth"
   },

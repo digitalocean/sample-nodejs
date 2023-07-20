@@ -10,12 +10,10 @@ import {
   MySelectField,
   MyTextarea,
   compress,
-  Receipt,
 } from './Fields';
 import { Formik, Field, ErrorMessage } from 'formik';
 import { AddVisitSchema } from './Validation';
 import { Link } from 'react-router-dom';
-import axios from 'axios';
 
 export default class AddVisit extends React.Component {
   state = {
@@ -32,16 +30,10 @@ export default class AddVisit extends React.Component {
         this.setState({ providersByClinic });
       });
   }
-  getPresignedUrl = (filename) =>
-    axios({
-      url: url + 'getUploadURL',
-      method: 'post',
-      headers: { 'Content-Type': 'application/json' },
-      data: JSON.stringify({ filename })
-    })
-      .then(({ data }) => {
-        return { key: data?.url?.key, url: data?.url?.uploadURL }
-      })
+  getPresignedUrl = () =>
+    fetch(
+      url + 'getUploadURL').then((r) => r.json())
+      .then((res) => ({ key: res?.url?.key, url: res?.url?.uploadURL }))
 
   submit = (values, { resetForm }) => {
     values.amountSpent = Number(Number(values.amountSpent).toFixed(2));
@@ -70,25 +62,33 @@ export default class AddVisit extends React.Component {
 
   uploadReceipt = async (uploadDetails, blob) => {
     const { key, url } = uploadDetails
+    console.log('Upload receipt', { url, blob });
     try {
       await fetch(url, {
         method: 'PUT',
         body: blob
-      }).then(r => {
-        if (!r.ok) throw Error('failing to upload image')
       })
-
-      // console.log('key receipt was saved at', uploadDetails)
+      console.log('key receipt was saved at', uploadDetails)
       this.setState({ receiptID: key, receiptUpload: 'success' })
 
-      // console.log('success')
+      console.log('success')
     } catch (e) {
-      // console.log('error', e)
+      console.log('error', e)
       this.setState({
         receiptUpload:
           'failed but you may continue submitting without upload.',
       });
     }
+    // .then(r => r.json())
+    //   .then(json => {
+    //     json.ok
+    //       ? this.setState({ receiptID: json, receiptUpload: 'success' })
+    //       : Promise.reject(json)
+    //   })
+    //   .catch((e) => {
+
+    //     console.log(e);
+    //   })
   };
 
   render() {
@@ -122,100 +122,7 @@ export default class AddVisit extends React.Component {
         {({ isSubmitting, values, handleReset, handleSubmit }) => {
           return (
             <Wrapper>
-              <form onReset={handleReset} onSubmit={handleSubmit} noValidate>
-                <See values={values} />
-                <ErrorMessage component={Err} name={'clinic'} />
-                <Field name="clinic" as={MySelectField} label="Choose Clinic">
-                  {[{ _id: 0, name: 'Choose Clinic' }, ...allMyClinics].map(
-                    ({ _id, name }) => (
-                      <option key={_id} value={_id} children={name} />
-                    )
-                  )}
-                </Field>
-                <ErrorMessage component={Err} name={'providers'} />
-                <SelectProvider
-                  providersByClinic={providersByClinic}
-                  clinic={values.clinic}
-                />
-                <MyTextInputField
-                  label="Add Receipt"
-                  type="file"
-                  width={250}
-                  marginBottom={32}
-                  onChange={async (event) => {
-                    // console.log('event', event)
-                    this.setState({ receiptUpload: 'starting compression' });
-                    const filename = event.target.value.split('\\').at(-1)
-                    const [uploadDetails, blob] = await Promise.all([
-                      this.getPresignedUrl(filename),
-                      new Promise((resolve, reject) => {
-                        compress(event, (file) => {
-                          this.setState({ receiptUpload: 'compression finished' });
-                          resolve(file);
-                        })
-                      })
-                    ])
-                    this.uploadReceipt(uploadDetails, blob)
-
-                  }}
-                />
-                <b>Receipt Upload Status: </b>
-                <h4  >
-                  {this.state.receiptUpload}
-                </h4>
-                {this.state.receiptID && <Receipt src={`${url}receipt/${this.state.receiptID}`} />}
-
-                <ErrorMessage component={Err} name={'date'} />
-                <Field
-                  name="date"
-                  label="Date"
-                  type="datetime-local"
-                  as={MyTextInputField}
-                />
-                <ErrorMessage component={Err} name={'reason'} />
-                <Field
-                  name="reason"
-                  as={MySelectField}
-                  label="Reason For Visit"
-                >
-                  <option value="0" key={0}>
-                    Choose a Reason
-                  </option>
-                  {reasons.map((n) => (
-                    <option value={n} key={n}>
-                      {n}
-                    </option>
-                  ))}
-                </Field>
-                <SelectMaterials />
-                <ErrorMessage component={Err} name={'amountSpent'} />
-                <Field
-                  inputMode="decimal"
-                  name="amountSpent"
-                  as={MyTextInputField}
-                  label="Enter Amount Spent"
-                />
-                <Label>
-                  Additional Notes:
-                  <Field name="notes" as={MyTextarea} />
-                </Label>
-                <div style={{ display: 'flex' }}>
-                  <div style={{ margin: 'auto' }}>
-                    {dev && <button type="submit">check</button>}
-                    {/* {this.state.receiptSubmitted || !validate ? ( */}
-                    <Button
-                      type="submit"
-                      disabled={isSubmitting}
-                      children="Submit"
-                      height={60}
-                      name="submitvisit"
-                    />
-                    {/* ) : (                      'Please Attach A Receipt Before Submitting'                    )} */}
-                    {isSubmitting && 'Adding Visit'}
-                    {this.state.submitError && this.state.submitError}
-                  </div>
-                </div>
-              </form>
+              test page
             </Wrapper>
           );
         }}

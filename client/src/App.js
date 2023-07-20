@@ -15,7 +15,7 @@ const App = ({ wholeUser }) => {
     <Router>
       <Suspense fallback={<Loading />}>
         <Switch>
-          {Object.keys(routeNames).map(string => {
+          {Object.keys({ ...routeNames, 'Test Page': ['testpage'] }).map(string => {
             const componentName = string.split(' ').join('');
             return (
               <Route

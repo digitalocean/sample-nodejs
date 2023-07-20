@@ -48,8 +48,8 @@ const Auth = () => {
       <AmplifySignOut />
     </div>
   ) : (
-      <AmplifyAuthenticator />
-    );
+    <AmplifyAuthenticator />
+  );
 }
 
 export default Auth;

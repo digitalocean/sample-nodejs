@@ -16,7 +16,7 @@
     "dev-all": "run-p dev dev-server",
     "dev-server": "supervisor  -w server -- server/server.js",
     "dev-server2": "supervisor --no-restart-on exit -w server -- server/server.js ",
-    "test": "node --inspect tests/test.js",
+    "test": "npx playwright test --headed",
     "precommit": "npm run build && npm run prodauth"
   },
   "dependencies": {
@@ -27,6 +27,7 @@
     "@svgr/webpack": "4.3.2",
     "aws-amplify": "^3.3.14",
     "aws-sdk": "^2.771.0",
+    "axios": "^1.4.0",
     "babel-jest": "^24.9.0",
     "babel-loader": "8.0.6",
     "babel-plugin-named-asset-import": "^0.3.4",
@@ -162,6 +163,7 @@
     "node": ">=10.0"
   },
   "devDependencies": {
+    "@playwright/test": "^1.36.1",
     "@typescript-eslint/eslint-plugin": "^2.20.0",
     "@typescript-eslint/parser": "^2.20.0",
     "babel-eslint": "^10.0.3",

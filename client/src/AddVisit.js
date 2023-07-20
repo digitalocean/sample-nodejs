@@ -10,10 +10,12 @@ import {
   MySelectField,
   MyTextarea,
   compress,
+  Receipt,
 } from './Fields';
 import { Formik, Field, ErrorMessage } from 'formik';
 import { AddVisitSchema } from './Validation';
 import { Link } from 'react-router-dom';
+import axios from 'axios';
 
 export default class AddVisit extends React.Component {
   state = {
@@ -30,6 +32,16 @@ export default class AddVisit extends React.Component {
         this.setState({ providersByClinic });
       });
   }
+  getPresignedUrl = (filename) =>
+    axios({
+      url: url + 'getUploadURL',
+      method: 'post',
+      headers: { 'Content-Type': 'application/json' },
+      data: JSON.stringify({ filename })
+    })
+      .then(({ data }) => {
+        return { key: data?.url?.key, url: data?.url?.uploadURL }
+      })
 
   submit = (values, { resetForm }) => {
     values.amountSpent = Number(Number(values.amountSpent).toFixed(2));
@@ -56,29 +68,27 @@ export default class AddVisit extends React.Component {
       });
   };
 
-  uploadReceipt = (file) => {
-    this.setState({ receiptUpload: 'starting upload' });
-    const data = new FormData();
-    data.append('myFile', file);
-    fetch(url + 'receipt', {
-      method: 'POST',
-      body: data,
-    }).then((r) =>
-      r
-        .json()
-        .then((json) =>
-          r.ok
-            ? this.setState({ receiptID: json, receiptUpload: 'success' })
-            : Promise.reject(json)
-        )
-        .catch((e) => {
-          this.setState({
-            receiptUpload:
-              'failed but you may continue submitting without upload.',
-          });
-          console.log(e);
-        })
-    );
+  uploadReceipt = async (uploadDetails, blob) => {
+    const { key, url } = uploadDetails
+    try {
+      await fetch(url, {
+        method: 'PUT',
+        body: blob
+      }).then(r => {
+        if (!r.ok) throw Error('failing to upload image')
+      })
+
+      // console.log('key receipt was saved at', uploadDetails)
+      this.setState({ receiptID: key, receiptUpload: 'success' })
+
+      // console.log('success')
+    } catch (e) {
+      // console.log('error', e)
+      this.setState({
+        receiptUpload:
+          'failed but you may continue submitting without upload.',
+      });
+    }
   };
 
   render() {
@@ -91,7 +101,7 @@ export default class AddVisit extends React.Component {
           prefill
             ? {
               clinic: '5e016d700afaa520354490b2',
-              date: '2021-01-30T12:59',
+              date: '2023-07-19T12:59',
               providers: [],
               reason: 'Educational Lunch',
               amountSpent: 400,
@@ -132,17 +142,29 @@ export default class AddVisit extends React.Component {
                   type="file"
                   width={250}
                   marginBottom={32}
-                  onChange={(event) => {
+                  onChange={async (event) => {
+                    console.log('event', event)
                     this.setState({ receiptUpload: 'starting compression' });
-                    compress(event, (file) => {
-                      this.setState({ receiptUpload: 'compression finished' });
+                    const filename = event.target.value.split('\\').at(-1)
+                    const [uploadDetails, blob] = await Promise.all([
+                      this.getPresignedUrl(filename),
+                      new Promise((resolve, reject) => {
+                        compress(event, (file) => {
+                          this.setState({ receiptUpload: 'compression finished' });
+                          resolve(file);
+                        })
+                      })
+                    ])
+                    this.uploadReceipt(uploadDetails, blob)
 
-                      this.uploadReceipt(file);
-                    });
                   }}
                 />
                 <b>Receipt Upload Status: </b>
-                {this.state.receiptUpload}
+                <h4  >
+                  {this.state.receiptUpload}
+                </h4>
+                {this.state.receiptID && <Receipt src={`${url}receipt/${this.state.receiptID}`} />}
+
                 <ErrorMessage component={Err} name={'date'} />
                 <Field
                   name="date"

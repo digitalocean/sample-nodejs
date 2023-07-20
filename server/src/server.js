@@ -1,10 +1,9 @@
 const express = require('express');
-
-const app = express();
 const path = require('path');
 const cors = require('cors');
 const dotenv = require('dotenv');
 
+const app = express();
 const buildDir = path.join(__dirname, '..', 'build');
 
 dotenv.load();
@@ -53,6 +52,14 @@ app.get('/api/logout', cors(), (req, res) => {
   res.send(JSON.stringify('ok'));
 });
 
+/* in past we used usernames for everything in database. now
+that we're using cognito, we have these ids. but for old
+users we need to map to old region or rep name
+*/
+const idToOldUsername = id => ({
+  jmetevier: 'jpm',
+  mss: 'mss'
+}[id] || id);
 app.post('/api/login', cors(), async (req, res) => {
   const oldUsername = idToOldUsername(req.body.username);
   req.session.rep = oldUsername;
@@ -60,14 +67,14 @@ app.post('/api/login', cors(), async (req, res) => {
 });
 
 function isAuthorizedMiddleware(req, res, next) {
-  const rep = req?.session?.rep
+  const rep = req?.session?.rep;
   if (rep) {
-    console.log(57, 'user:', rep)
+    // console.log(57, 'user:', rep)
   } else {
-    console.log(67, 'no rep!')
-    return res.status(401).send({ message: "Unauthorized" });
+    // console.log(67, 'no rep!')
+    return res.status(401).send({ message: 'Unauthorized' });
   }
-  next();
+  return next();
 }
 
 app.use(isAuthorizedMiddleware);
@@ -80,26 +87,16 @@ app.get('/api/totalsForProviders', async (req, res) => {
   res.json(totals.sort(({ amount }, b) => b.amount - amount));
 });
 
-
 app.post('/api/sign', async (req, res) => {
   const { id, status } = req.body;
   res.json(await db.sign(req.session.rep, status, id));
 });
 
-
-/* in past we used usernames for everything in database. now
-that we're using cognito, we have these ids. but for old
-users we need to map to old region or rep name
-*/
-const idToOldUsername = id => ({
-  jmetevier: 'jpm',
-  mss: 'mss'
-}[id] || id);
-
 app.options('/api/visit', cors());
 
 app.get('/api/visits', cors(), async (req, res) => {
-  res.json(await db.getVisits(req.session.rep));
+  const allVisits = await db.getVisits(req.session.rep);
+  res.json(allVisits);
 });
 
 app.options('/api/clinic', cors());
@@ -122,25 +119,11 @@ app.post('/api/provider', cors(), async ({ body, ...rest }, res) => {
   );
 });
 
-let name = '0.8708915141890314';
-
-app.post('/api/receipt', async (req, res, next) => {
-  name = 's3';
-  name += Math.random().toString();
-  const pathToFile = `./receipts/${name}.png`;
-  req.files.myFile.mv(pathToFile, (err) => {
-    if (err) next(err);
-    else {
-      aws
-        .addPhoto(name)
-        .then(() => {
-          // console.log({ key });
-          res.json(name);
-        })
-        .catch((error) => {
-          next(error);
-        });
-    }
+// eslint-disable-next-line
+app.post('/api/getUploadURL', async ({ body }, res, next) => {
+  console.log({ body });
+  aws.getSignedUrl(body.filename).then((url) => {
+    res.json({ url });
   });
 });
 
@@ -166,7 +149,6 @@ app.get('/crash/async',
     setTimeout(crash, 500);
   });
 
-
 // app.get('/crash/promise', require('crasher/promise'))
 // app.get('/api/crash-async', (req, res) => {
 //   console.log('async crashing');
@@ -179,9 +161,7 @@ app.get('/crash/async',
 
 app.get('/api/receipt/:receiptID', async (req, res, next) => {
   const { receiptID } = req.params;
-  const storedInS3 = receiptID.substring(0, 2) === 's3';
-  const imageLocation = storedInS3 ? aws : db;
-  imageLocation
+  aws
     .receipt(receiptID)
     .then(({ ContentType, Body }) => {
       res.contentType(ContentType);

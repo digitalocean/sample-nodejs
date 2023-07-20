@@ -63,10 +63,10 @@ export const SubmitButton = function ({ link = '' }) {
       <div>{link || <button onClick={reload}>Add Another</button>}</div>
     </div>
   ) : (
-      <Button onClick={doIt} appearance="primary">
-        Submit
-      </Button>
-    );
+    <Button onClick={doIt} appearance="primary">
+      Submit
+    </Button>
+  );
 };
 
 export const DevInfo = ({ children }) =>
@@ -83,7 +83,6 @@ export const OneVisit = ({ visit = {}, spending }) => {
   if (!visit._id) return 'Choose a Date';
 
   const { amountSpent, providers, materials, receiptID, rep } = visit;
-
   return (
     <>
       <h4>For This Visit</h4>
@@ -103,8 +102,8 @@ export const OneVisit = ({ visit = {}, spending }) => {
       {receiptID && receiptID.length ? (
         <Receipt src={`${url}receipt/${receiptID}`} />
       ) : (
-          'No image was uploaded'
-        )}
+        'No image was uploaded'
+      )}
     </>
   );
 };
@@ -132,23 +131,23 @@ export const Receipt = ({ src }) => {
       </div>
     </div>
   ) : (
-      <>
-        <h4>Click To Enlarge</h4>
-        <div style={{ display: 'flex', height: '350px' }}>
-          <div style={{ margin: 'auto', transform: 'rotate(90deg)' }}>
-            <div onClick={toggle}>
-              <img
-                height="250px"
-                onLoad={() => setLoading(false)}
-                src={src}
-                alt="receipt"
-              />
-              {loading && <Spinner />}
-            </div>
+    <>
+      <h4>Click To Enlarge</h4>
+      <div style={{ display: 'flex', height: '350px' }}>
+        <div style={{ margin: 'auto', transform: 'rotate(90deg)' }}>
+          <div onClick={toggle}>
+            <img
+              height="250px"
+              onLoad={() => setLoading(false)}
+              src={src}
+              alt="receipt"
+            />
+            {loading && <Spinner />}
           </div>
         </div>
-      </>
-    );
+      </div>
+    </>
+  );
 };
 
 export const Err = ({ children }) => (
@@ -172,11 +171,7 @@ export const compress = (e, cb) => {
       ctx.drawImage(img, 0, 0, width, elem.height);
       ctx.canvas.toBlob(
         (blob) => {
-          const file = new File([blob], e.target.files[0].name, {
-            type: 'image/jpeg',
-            lastModified: Date.now(),
-          });
-          cb(file);
+          cb(blob);
         },
         'image/jpeg',
         1

@@ -10,6 +10,22 @@ AWS.config.update({
   region: process.env.AWS_region,
 });
 const s3 = new AWS.S3({ apiVersion: '2006-03-01' });
+const Bucket = process.env.AWS_bucketname;
+
+exports.getSignedUrl = async (filename) => {
+  // Get signed URL from S3
+  const key = filename + (Math.random() * 10000000);
+  const s3Params = {
+    Bucket,
+    Key: key,
+    ContentType: 'image/jpeg',
+  };
+
+  const uploadURL = await s3.getSignedUrlPromise('putObject', s3Params);
+  console.log(s3Params, { uploadURL }); // check
+
+  return ({ uploadURL, key });
+};
 
 exports.addPhoto = (name) => {
   const params = {
@@ -24,7 +40,7 @@ exports.addPhoto = (name) => {
 
 exports.receipt = async (key) => {
   const params = {
-    Bucket: process.env.AWS_bucketname,
+    Bucket,
     Key: key,
   };
 

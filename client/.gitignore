@@ -1,0 +1,7 @@
+.env
+node_modules
+receipts
+build
+/test-results/
+/playwright-report/
+/playwright/.cache/

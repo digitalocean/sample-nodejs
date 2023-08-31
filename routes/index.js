@@ -1,6 +1,9 @@
 var express = require('express');
 var router = express.Router();
 
+var MersenneTwister = require('mersenne-twister');
+var generator = new MersenneTwister();
+
 /* GET home page. */
 // router.get('/', function(req, res, next) {
 //   res.render('index', { title: 'Express' });
@@ -21,16 +24,12 @@ const lorem = new LoremIpsum({
   }
 });
 
-function randomArticle(seed) {
-  var MersenneTwister = require('mersenne-twister');
-  var generator = new MersenneTwister(seed);
+function randomArticle() {
   var articles = ['a', 'the'];
   return articles[Math.floor(generator.random() * articles.length)];
 }
 
-function randomNoun(seed) {
-  var MersenneTwister = require('mersenne-twister');
-  var generator = new MersenneTwister(seed);
+function randomNoun() {
   var nouns = ['waste','increase','sky','horn','sweater','head','push','bell',
   'passenger','sock','mouth','ant','zoo','holiday','branch','snake','robin',
   'knife','part','throne','distribution','women','care','loaf','angle','sleep',
@@ -129,9 +128,7 @@ function randomNoun(seed) {
   return nouns[Math.floor(generator.random() * nouns.length)];
 }
 
-function randomVerb(seed) {
-  var MersenneTwister = require('mersenne-twister');
-  var generator = new MersenneTwister(seed);
+function randomVerb() {
   var verbs = ['prays','sprouts','opens','plants','shades','signals','shivers',
   'hooks','lies','borrows','punctures','wishes','arrives','watches','hands',
   'greets','informs','harasses','crushes','wants','cries','winks','cheats',
@@ -216,9 +213,7 @@ function randomVerb(seed) {
   return verbs[Math.floor(generator.random() * verbs.length)];
 }
 
-function randomAjective(seed) {
-  var MersenneTwister = require('mersenne-twister');
-  var generator = new MersenneTwister(seed);
+function randomAjective() {
   var adjectives = ['hushed','teeny-tiny','decisive','long-term','alcoholic',
   'alleged','ragged','discreet','ill','devilish','scintillating','furtive',
   'unable','honorable','valuable','longing','half','wretched','amused',
@@ -361,9 +356,7 @@ function randomAjective(seed) {
   return adjectives[Math.floor(generator.random() * adjectives.length)];
 }
 
-function randomAdverb(seed) {
-  var MersenneTwister = require('mersenne-twister');
-  var generator = new MersenneTwister(seed);
+function randomAdverb() {
   var adverbs = ['dimly','acidly','potentially','judgementally','fervently',
   'lively','deeply','beautifully','devotedly','yesterday','tenderly',
   'tensely','boastfully','carefully','upward','queasily','basically',
@@ -455,80 +448,60 @@ function sentenceD(seed) {
 }
 
 function sentenceE(seed) {
-  var MersenneTwister = require('mersenne-twister');
-  var generator = new MersenneTwister(seed);
   sentences = [sentenceA, sentenceB, sentenceC, sentenceD];
   return sentences[Math.floor(generator.random() * sentences.length)](seed++) +
   ' because ' + sentences[Math.floor(generator.random() * sentences.length)](10 + seed++);
 }
 
 function sentenceF(seed) {
-  var MersenneTwister = require('mersenne-twister');
-  var generator = new MersenneTwister(seed);
   sentences = [sentenceA, sentenceB, sentenceC, sentenceD];
   return sentences[Math.floor(generator.random() * sentences.length)](seed++) +
   ' when ' + sentences[Math.floor(generator.random() * sentences.length)](10 + seed++);
 }
 
 function sentenceG(seed) {
-  var MersenneTwister = require('mersenne-twister');
-  var generator = new MersenneTwister(seed);
   sentences = [sentenceA, sentenceB, sentenceC, sentenceD];
   return sentences[Math.floor(generator.random() * sentences.length)](seed++) +
   ' though ' + sentences[Math.floor(generator.random() * sentences.length)](10 + seed++);
 }
 
 function sentenceH(seed) {
-  var MersenneTwister = require('mersenne-twister');
-  var generator = new MersenneTwister(seed);
   sentences = [sentenceA, sentenceB, sentenceC, sentenceD];
   return sentences[Math.floor(generator.random() * sentences.length)](seed++) +
   ' while ' + sentences[Math.floor(generator.random() * sentences.length)](10 + seed++);
 }
 
 function sentenceI(seed) {
-  var MersenneTwister = require('mersenne-twister');
-  var generator = new MersenneTwister(seed);
   sentences = [sentenceA, sentenceB, sentenceC, sentenceD];
   return sentences[Math.floor(generator.random() * sentences.length)](seed++) +
   ', and ' + sentences[Math.floor(generator.random() * sentences.length)](10 + seed++);
 }
 
 function sentenceJ(seed) {
-  var MersenneTwister = require('mersenne-twister');
-  var generator = new MersenneTwister(seed);
   sentences = [sentenceA, sentenceB, sentenceC, sentenceD];
   return sentences[Math.floor(generator.random() * sentences.length)](seed++) +
   ', but ' + sentences[Math.floor(generator.random() * sentences.length)](10 + seed++);
 }
 
 function sentenceK(seed) {
-  var MersenneTwister = require('mersenne-twister');
-  var generator = new MersenneTwister(seed);
   sentences = [sentenceA, sentenceB, sentenceC, sentenceD];
   return sentences[Math.floor(generator.random() * sentences.length)](seed++) +
   ', so ' + sentences[Math.floor(generator.random() * sentences.length)](10 + seed++);
 }
 
 function sentenceL(seed) {
-  var MersenneTwister = require('mersenne-twister');
-  var generator = new MersenneTwister(seed);
   sentences = [sentenceA, sentenceB, sentenceC, sentenceD];
   return sentences[Math.floor(generator.random() * sentences.length)](seed++) +
   ', after ' + sentences[Math.floor(generator.random() * sentences.length)](10 + seed++);
 }
 
 function sentenceM(seed) {
-  var MersenneTwister = require('mersenne-twister');
-  var generator = new MersenneTwister(seed);
   sentences = [sentenceA, sentenceB, sentenceC, sentenceD];
   return sentences[Math.floor(generator.random() * sentences.length)](seed++) +
   ', before ' + sentences[Math.floor(generator.random() * sentences.length)](10 + seed++);
 }
 
 function randomSentence(seed) {
-  var MersenneTwister = require('mersenne-twister');
-  var generator = new MersenneTwister(seed);
   sentences = [sentenceA, sentenceB, sentenceC, sentenceD, sentenceE, sentenceF,
      sentenceG, sentenceH, sentenceI, sentenceJ, sentenceK, sentenceL, sentenceM];
   sentence = sentences[Math.floor(generator.random() * sentences.length)](seed++);
@@ -541,8 +514,6 @@ function randomTitle(seed) {
 }
 
 function randomParagraph(seed) {
-  var MersenneTwister = require('mersenne-twister');
-  var generator = new MersenneTwister(seed);
   var sentences = 4 + Math.floor(generator.random() * 5);
   var paragraph = [];
   for (var i = 0; i < sentences; i++) {
@@ -552,8 +523,6 @@ function randomParagraph(seed) {
 }
 
 function randomParagraphs(seed) {
-  var MersenneTwister = require('mersenne-twister');
-  var generator = new MersenneTwister(seed);
   var paragraphs = 5 + Math.floor(generator.random() * 100);
   var article = [];
   for (var i = 0; i < paragraphs; i++) {
@@ -563,8 +532,6 @@ function randomParagraphs(seed) {
 }
 
 function randomLink(seed, hostname) {
-  var MersenneTwister = require('mersenne-twister');
-  var generator = new MersenneTwister(seed);
   var link = [];
   link['href'] = '/' + randomSentence(seed).replace(/ /g, '/').replace(/,/g, '');
   var linkSeed = generateSeed(hostname + link['href']);
@@ -573,7 +540,6 @@ function randomLink(seed, hostname) {
 }
 
 function randomLinks(seed, hostname) {
-  var MersenneTwister = require('mersenne-twister');
   var generator = new MersenneTwister(seed+10000);
   var linkCount = 5 + Math.floor(generator.random() * 10);
   var links = [];

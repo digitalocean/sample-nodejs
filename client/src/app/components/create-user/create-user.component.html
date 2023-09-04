@@ -1,0 +1,159 @@
+<div>
+  <mat-dialog-content>
+    <form #createForm="ngForm">
+      <div class="row">
+        <h4 class="text-left" style="color: #5bc9a1">{{ (profile?"Profile":(update?"Edit User":"Create User"))}}</h4>
+        <div class="col-12">
+          <div class="row">
+            <div class="col-12 mb-4" *ngIf="profile">
+              <mat-label class="me-2">Upload Photo</mat-label>
+              <button mat-raised-button color="primary" onclick="document.getElementById('flUploadPhoto').click()">Choose File</button>
+              <input type="file" id="flUploadPhoto" class="d-none" (change)="onFileSelected($event)">
+              <div class="col-12 mt-2">
+                <mat-label>Please choose a PNG file and ensure that the photo is less than 1MB in size</mat-label>
+              </div>
+            </div>
+            
+            <div class="col-12">
+              <mat-form-field appearance="outline" class="w-100">
+                <mat-label>Username</mat-label>
+                <input matInput placeholder="johnny@07" name="username" [(ngModel)]="formData.username"
+                  #usernameTemp="ngModel" required />
+                <mat-error *ngIf="usernameTemp.invalid &&
+                    (usernameTemp.dirty || usernameTemp.touched)">Username is required</mat-error>
+              </mat-form-field>
+            </div>
+            <div>
+              <mat-form-field appearance="outline" class="w-100">
+                <mat-label>Enter Password</mat-label>
+                <input [disabled]="update" matInput [(ngModel)]="formData.password" name="password"
+                  #passwordTemp="ngModel" [type]="hide ? 'password' : 'text'" required />
+                <button mat-icon-button matSuffix type="button" (click)="hide = !hide"
+                  [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+                  <mat-icon>{{
+                    hide ? "visibility_off" : "visibility"
+                    }}</mat-icon>
+                </button>
+                <mat-error *ngIf="passwordTemp.invalid &&
+                    (passwordTemp.dirty || passwordTemp.touched)">Password is required</mat-error>
+              </mat-form-field>
+            </div>
+            <div class="col-12">
+              <mat-form-field appearance="outline" class="w-100">
+                <mat-label>Name</mat-label>
+                <input matInput placeholder="John Smith" name="name" [(ngModel)]="formData.name" #nameTemp="ngModel"
+                  required />
+                <mat-error *ngIf="nameTemp.invalid &&
+                    (nameTemp.dirty || nameTemp.touched)">Name is required</mat-error>
+              </mat-form-field>
+            </div>
+            <div class="col-12">
+              <mat-form-field appearance="outline">
+                <mat-label>User Type</mat-label>
+                <mat-select [disabled]="profile" [(ngModel)]="formData.type" name="food">
+                  <mat-option *ngFor="let option of userTypeOptions" [value]="option">
+                    {{option}}
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
+            </div>
+            <div class="col-12">
+              <mat-form-field appearance="outline" class="w-100">
+                <mat-label>Address</mat-label>
+                <textarea matInput name="address" type="number" rows="8" [(ngModel)]="formData.address"
+                  #addressTemp="ngModel" required></textarea>
+                <mat-error *ngIf="addressTemp.invalid &&
+                    (addressTemp.dirty || addressTemp.touched)">Address is required</mat-error>
+              </mat-form-field>
+            </div>
+            <div class="col-12">
+              <mat-form-field appearance="outline" class="w-100">
+                <mat-label>ID</mat-label>
+                <input matInput placeholder="zhi1@john" name="id" [(ngModel)]="formData.employeeId" #idTemp="ngModel"
+                  required [disabled]="profile" />
+                <mat-error *ngIf="idTemp.invalid &&
+                    (idTemp.dirty || idTemp.touched)">ID is required</mat-error>
+              </mat-form-field>
+            </div>
+            <div class="col-12">
+              <mat-form-field appearance="outline" class="w-100">
+                <mat-label>Mobile No</mat-label>
+                <input matInput placeholder="8729017289" name="mobileNo" [(ngModel)]="formData.mobileNo"
+                  #mobileNoTemp="ngModel" required />
+                <mat-error *ngIf="mobileNoTemp.invalid &&
+                    (mobileNoTemp.dirty || mobileNoTemp.touched)">Mobile No is required</mat-error>
+              </mat-form-field>
+            </div>
+            <div class="col-12">
+              <mat-form-field appearance="outline" class="w-100">
+                <mat-label>Email</mat-label>
+                <input matInput placeholder="john@example.com" name="email" [(ngModel)]="formData.email"
+                  #emailTemp="ngModel" required />
+                <mat-error *ngIf="emailTemp.invalid &&
+                    (emailTemp.dirty || emailTemp.touched)">email is required</mat-error>
+              </mat-form-field>
+            </div>
+            <div class="col-12">
+              <mat-form-field appearance="outline" class="w-100">
+                <mat-label>Contact Person Name</mat-label>
+                <input matInput placeholder="John" name="contactPersonName" [(ngModel)]="formData.contactPerson.name"
+                  #contactPersonNameTemp="ngModel" required />
+                <mat-error *ngIf="contactPersonNameTemp.invalid &&
+                    (contactPersonNameTemp.dirty || contactPersonNameTemp.touched)">Contact Person Name is
+                  required</mat-error>
+              </mat-form-field>
+            </div>
+            <!-- <div class="col-12">
+              <mat-form-field appearance="outline" class="w-100">
+                <mat-label>Contact Person Email</mat-label>
+                <input
+                  matInput
+                  placeholder="john@example.com"
+                  name="contactPersonEmail"
+                  [(ngModel)]="formData.contactPerson.email"
+                  #contactPersonEmailTemp="ngModel"
+                  required
+                />
+                <mat-error
+                  *ngIf="contactPersonEmailTemp.invalid &&
+                    (contactPersonEmailTemp.dirty || contactPersonEmailTemp.touched)"
+                  >Contact Person Email is required</mat-error
+                >
+              </mat-form-field>
+            </div> -->
+            <div class="col-12">
+              <mat-form-field appearance="outline" class="w-100">
+                <mat-label>Contact Person Mobile No</mat-label>
+                <input matInput placeholder="8901789675" name="contactPersonMobileNo"
+                  [(ngModel)]="formData.contactPerson.mobileNo" #contactPersonMobileNoTemp="ngModel" required />
+                <mat-error *ngIf="contactPersonMobileNoTemp.invalid &&
+                    (contactPersonMobileNoTemp.dirty || contactPersonMobileNoTemp.touched)">Contact Person MobileNo is
+                  required</mat-error>
+              </mat-form-field>
+            </div>
+            <div class="col-12">
+              <mat-form-field appearance="outline" class="w-100">
+                <mat-label>Joining Date</mat-label>
+                <input matInput [(ngModel)]="formData.joiningDate" name="joiningDate" [matDatepicker]="spicker1"
+                  #joiningDateTemp="ngModel">
+                <mat-hint>MM/DD/YYYY</mat-hint>
+                <mat-datepicker-toggle matSuffix [for]="spicker1"></mat-datepicker-toggle>
+                <mat-datepicker #spicker1></mat-datepicker>
+                <mat-error *ngIf="joiningDateTemp.invalid &&
+                    (joiningDateTemp.dirty || joiningDateTemp.touched)">Joining Date is required</mat-error>
+              </mat-form-field>
+            </div>
+          </div>
+        </div>
+      </div>
+    </form>
+  </mat-dialog-content>
+  <mat-dialog-actions>
+    <button *ngIf="data.updateUser" mat-raised-button color="primary" (click)="updateUser()"
+      [disabled]="!createForm.valid">Save</button>
+
+    <button *ngIf="!data.updateUser" mat-raised-button color="primary" (click)="onSave()"
+      [disabled]="!createForm.valid">Save</button>
+    <button mat-raised-button color="warn" matDialogClose>Close</button>
+  </mat-dialog-actions>
+</div>

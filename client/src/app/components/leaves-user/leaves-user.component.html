@@ -1,0 +1,55 @@
+<app-side-bar-user>
+  <div *ngIf="loading" class="d-flex align-items-center justify-content-center">
+    <mat-spinner [diameter]="30"></mat-spinner>
+  </div>
+  <div *ngIf="!loading">
+    <h2 class="text-center">
+      <span class="page-heading">Leaves</span>  
+      <button class="float-end" (click)="exportLeaves()" mat-icon-button color="primary"><mat-icon>download</mat-icon></button>
+      <button mat-raised-button class="float-end me-2" color="primary" (click)="openCreateLeave()" matTooltip="Add Leave" matTooltipPosition="right">
+        <mat-icon>add</mat-icon> Apply Leave
+      </button>
+    </h2>
+    <hr />
+    <div class="table-responsive">
+      <table class="table table-striped table-bordered">
+        <thead class="thead-light">
+          <tr>
+            <th scope="col" *ngFor="let column of displayedColumns">
+              {{ column }}
+            </th>
+            <th>
+             
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let data of dataSource; let i = index">
+            <th scope="row">{{ ((page-1) * pageSize)+(i + 1) }}</th>
+            <td>{{data.appliedBy.username}} - {{data.appliedBy.employeeId}} ({{data.appliedBy.type}})</td>
+            <td>{{ data.dateOfLeave|date }}</td>
+            <td>{{ data.type }}</td>
+            <td>{{ data.reason }}</td>
+            <td>
+              <span *ngIf="data.approval==null" class="bg-warning badge">To be approved</span>
+              <span *ngIf="data.approval==true" class="bg-success badge">Approved</span>
+              <span *ngIf="data.approval==false"  class="bg-danger badge">Rejected</span>
+            </td>
+            <td>
+              <div class="d-flex" *ngIf="data.approval==null">
+                <button mat-icon-button color="primary" matTooltip="edit" (click)="editLeave(data)">
+                  <mat-icon>edit</mat-icon>
+                </button>
+                <button mat-icon-button color="accent" matTooltip="delete" (click)="deleteLeave(data)">
+                  <mat-icon>delete</mat-icon>
+                </button>
+              </div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <mat-paginator [pageIndex]="page-1" [pageSize]="pageSize" [length]="totalRows" (page)="onPageChange($event)" [pageSizeOptions]="[10, 50, 100]" aria-label="Select page">
+      </mat-paginator>
+    </div>
+  </div>
+</app-side-bar-user>

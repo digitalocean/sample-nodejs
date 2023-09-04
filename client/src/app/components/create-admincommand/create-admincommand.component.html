@@ -1,0 +1,37 @@
+<div>
+  <mat-dialog-content>
+    <form #createForm="ngForm">
+      <div class="row">
+        <h4 class="text-left" style="color: #5bc9a1">{{(update?"Edit Command":"Create Command")}}</h4>
+        <div class="col-12">
+          <div class="row">
+            <div class="col-12">
+              <mat-form-field appearance="outline" class="w-100">
+                <mat-label>Command</mat-label>
+                <textarea
+                  matInput
+                  placeholder="Command"
+                  name="admincommand"
+                  [(ngModel)]="formData.admincommand"
+                  #admincommandTemp="ngModel"
+                  required
+                ></textarea>
+                <mat-error
+                  *ngIf="admincommandTemp.invalid &&
+                    (admincommandTemp.dirty || admincommandTemp.touched)"
+                  >Command is required</mat-error
+                >
+              </mat-form-field>
+            </div>
+          </div>
+        </div>
+      </div>
+    </form>
+  </mat-dialog-content>
+  <mat-dialog-actions>
+    <button *ngIf="data.updateAdminCommand" mat-raised-button color="primary" (click)="updateAdminCommand()" [disabled]="!createForm.valid">Save</button>
+    
+    <button *ngIf="!data.updateAdminCommand" mat-raised-button color="primary" (click)="onSave()" [disabled]="!createForm.valid">Save</button>
+    <button mat-raised-button color="warn" matDialogClose>Close</button>
+  </mat-dialog-actions>
+</div>

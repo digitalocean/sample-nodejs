@@ -1,0 +1,86 @@
+<app-side-bar>
+  <div *ngIf="loading" class="d-flex align-items-center justify-content-center">
+    <mat-spinner [diameter]="30"></mat-spinner>
+  </div>
+  <div *ngIf="!loading">
+    <h2 class="text-center">
+      <span class="page-heading">Transactions</span>
+      <button class="float-end" (click)="exportTransactions()" mat-icon-button
+        color="primary"><mat-icon>download</mat-icon></button>
+      <button (click)="openCreateTransaction()" mat-raised-button class="float-end me-2" color="primary"
+        matTooltip="Add Transaction" matTooltipPosition="right">
+        <mat-icon>add</mat-icon> Transaction
+      </button>
+    </h2>
+    <hr />
+    <div class="d-flex justify-content-end my-3">
+      <mat-form-field appearance="outline">
+        <mat-label>For</mat-label>
+        <mat-select [(ngModel)]="for" name="food">
+          <mat-option *ngFor="let option of options" [value]="option.value">
+            {{ option.key }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+      <mat-form-field appearance="outline" class="mx-2">
+        <mat-label>Start Date</mat-label>
+        <input matInput [(ngModel)]="startDate" [matDatepicker]="spicker" />
+        <mat-hint>MM/DD/YYYY</mat-hint>
+        <mat-datepicker-toggle matSuffix [for]="spicker"></mat-datepicker-toggle>
+        <mat-datepicker #spicker></mat-datepicker>
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>End Date</mat-label>
+        <input matInput [(ngModel)]="endDate" [matDatepicker]="epicker" />
+        <mat-hint>MM/DD/YYYY</mat-hint>
+        <mat-datepicker-toggle matSuffix [for]="epicker"></mat-datepicker-toggle>
+        <mat-datepicker #epicker></mat-datepicker>
+      </mat-form-field>
+      <button mat-icon-button class="mt-2" (click)="searchTransaction()">
+        <mat-icon>search</mat-icon>
+      </button>
+      <button mat-icon-button class="mt-2" title="Clear filter" (click)="clearSearch()">
+        <mat-icon>close</mat-icon>
+      </button>
+    </div>
+    <div class="table-responsive">
+      <table class="table table-striped table-bordered">
+        <thead class="thead-light">
+          <tr>
+            <th scope="col" *ngFor="let column of displayedColumns">
+              {{ column }}
+            </th>
+            <th>
+              Actions
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let data of dataSource; let i = index">
+            <th scope="row">{{ ((page-1) * pageSize)+(i + 1) }}</th>
+            <td>{{ data.invoice }}</td>
+            <td>{{ data.for }}</td>
+            <td>{{ this.getUsers(data.userList) }}</td>
+            <td>{{ data.date | date }}</td>            
+            <td>Rs. {{ data.paid }}</td>
+            <td>Rs. {{ data.recieved }}</td>            
+            <td>{{ data.description }}</td>
+            <td>
+              <div class="d-flex">
+                <button mat-icon-button color="primary" matTooltip="edit" (click)="openUpdateTransaction(data)">
+                  <mat-icon>edit</mat-icon>
+                </button>
+                <button mat-icon-button color="accent" matTooltip="delete" (click)="openDeleteArticle(data)">
+                  <mat-icon>delete</mat-icon>
+                </button>
+              </div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <mat-paginator [pageIndex]="page-1" [pageSize]="pageSize" [length]="totalRows" (page)="onPageChange($event)"
+        [pageSizeOptions]="[10, 50, 100]" aria-label="Select page">
+      </mat-paginator>
+    </div>
+  </div>
+</app-side-bar>

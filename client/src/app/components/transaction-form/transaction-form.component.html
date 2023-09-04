@@ -1,0 +1,153 @@
+<div>
+  <mat-dialog-content>
+    <form #createForm="ngForm">
+      <div class="row">
+        <h4 class="text-left" style="color: #5bc9a1">{{ data.title }}</h4>
+        <div class="col-12">
+          <div class="row">
+            <div class="col-12">
+              <mat-form-field appearance="outline" class="w-100">
+                <mat-label>Invoice No</mat-label>
+                <input
+                  matInput
+                  placeholder="UTS980"
+                  name="invoice"
+                  [(ngModel)]="formData.invoice"
+                  #invoiceTemp="ngModel"
+                  required
+                />
+                <mat-error
+                  *ngIf="
+                    invoiceTemp.invalid &&
+                    (invoiceTemp.dirty || invoiceTemp.touched)
+                  "
+                  >Article Type is required</mat-error
+                >
+              </mat-form-field>
+            </div>
+            <div class="col-12">
+              <mat-form-field appearance="outline" class="w-100">
+                <mat-label>Description</mat-label>
+                <textarea
+                  rows="8"
+                  matInput
+                  placeholder="description"
+                  name="description"
+                  [(ngModel)]="formData.description"
+                  #descriptionTemp="ngModel"
+                  required
+                ></textarea>
+                <mat-error
+                  *ngIf="
+                    descriptionTemp.invalid &&
+                    (descriptionTemp.dirty || descriptionTemp.touched)
+                  "
+                  >Description is required</mat-error
+                >
+              </mat-form-field>
+            </div>
+            <div class="col-12">
+              <mat-form-field appearance="outline" class="w-100">
+                <mat-label>Date</mat-label>
+                <input
+                  matInput
+                  [(ngModel)]="formData.date"
+                  [matDatepicker]="picker"
+                  name="date"
+                  #dateTemp="ngModel"
+                />
+                <mat-hint>MM/DD/YYYY</mat-hint>
+                <mat-datepicker-toggle
+                  matSuffix
+                  [for]="picker"
+                ></mat-datepicker-toggle>
+                <mat-datepicker #picker></mat-datepicker>
+                <mat-error
+                  *ngIf="
+                    dateTemp.invalid && (dateTemp.dirty || dateTemp.touched)
+                  "
+                  >Date is required</mat-error
+                >
+              </mat-form-field>
+            </div>
+            <div class="col-12">
+              <mat-form-field appearance="outline" class="w-100">
+                <mat-label>For</mat-label>
+                <mat-select [(ngModel)]="formData.for" #for name="for" (ngModelChange)="onSelectChange(for.value)">
+                  <mat-option
+                    *ngFor="let option of options"
+                    [value]="option.value"
+                  >
+                    {{ option.key }}
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
+            </div>
+            <div class="col-12">
+              <mat-form-field appearance="outline" class="w-100">
+                <mat-label>Select Beneficiary Name</mat-label>
+                <mat-select [(ngModel)]="formData.userList" name="userList" multiple>
+                  <mat-option *ngFor="let option of userDropdownList" [value]="option._id">
+                    {{ option.username }}
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
+            </div>
+            <div class="col-12">
+              <mat-form-field appearance="outline" class="w-100">
+                <mat-label>Paid Amount</mat-label>
+                <input
+                  matInput
+                  placeholder="300"
+                  name="paid"
+                  type="number"
+                  [(ngModel)]="formData.paid"
+                  #paidTemp="ngModel"
+                  required
+                />
+                <mat-error
+                  *ngIf="
+                    paidTemp.invalid && (paidTemp.dirty || paidTemp.touched)
+                  "
+                  >Paid amount is required</mat-error
+                >
+              </mat-form-field>
+            </div>
+            <div class="col-12">
+              <mat-form-field appearance="outline" class="w-100">
+                <mat-label>Recieved Amount</mat-label>
+                <input
+                  matInput
+                  placeholder="300"
+                  name="recieved"
+                  type="number"
+                  [(ngModel)]="formData.recieved"
+                  #recievedTemp="ngModel"
+                  required
+                />
+                <mat-error
+                  *ngIf="
+                    recievedTemp.invalid &&
+                    (recievedTemp.dirty || recievedTemp.touched)
+                  "
+                  >Recieved amount is required</mat-error
+                >
+              </mat-form-field>
+            </div>
+          </div>
+        </div>
+      </div>
+    </form>
+  </mat-dialog-content>
+  <mat-dialog-actions>
+    <button
+      mat-raised-button
+      color="primary"
+      (click)="onClickSuccess()"
+      [disabled]="!createForm.valid"
+    >
+      Save
+    </button>
+    <button mat-raised-button color="warn" matDialogClose>Close</button>
+  </mat-dialog-actions>
+</div>

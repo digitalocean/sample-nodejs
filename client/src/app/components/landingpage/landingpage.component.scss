@@ -1,0 +1,15 @@
+.data-view-card{    
+    padding: 2rem;
+    height:80vh;
+    overflow-y: auto;
+}
+.no-data{
+    position: absolute;
+    margin:auto;
+    top:0;
+    bottom:0;
+    right: 0;
+    left:0;
+    text-align: center;
+    height: 95px;
+}

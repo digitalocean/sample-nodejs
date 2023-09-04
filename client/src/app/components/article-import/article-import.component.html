@@ -1,0 +1,15 @@
+<div>
+  <mat-dialog-content>
+    <form #createForm="ngForm">  
+      <div class="row">
+        <div class="col-12">
+          <input type="file" (change)="onFileChange($event)" />              
+        </div>
+      </div>          
+    </form>
+  </mat-dialog-content>
+  <mat-dialog-actions>    
+    <button (click)="importDashboard()" color="primary" mat-raised-button>Import data</button>
+    <button mat-raised-button color="warn" matDialogClose>Close</button>
+  </mat-dialog-actions>
+</div>

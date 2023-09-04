@@ -1,0 +1,148 @@
+<div>
+  <header class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01"
+      aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
+      <a class="navbar-brand col-md-3 col-lg-2 me-0 px-3" [routerLink]="link">
+        <img src="/assets/logo.png" width="200" />
+      </a>
+      <ul class="navbar-nav mt-2 mt-lg-0">
+        <li class="nav-item active">
+          <a class="nav-link" routerLink="/admin-dashboard" routerLinkActive="active" aria-current="page">
+            <mat-icon>leaderboard</mat-icon><span>Dashboard</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/users" routerLinkActive="active">
+            <span data-feather="file"></span>
+            <mat-icon>supervisor_account</mat-icon>Users
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/transaction" routerLinkActive="active">
+            <span data-feather="file"></span>
+            <mat-icon>assignment_turned_in </mat-icon>Transactions
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link d-flex d-c" routerLink="/forgot-password-requests" routerLinkActive="active"
+            aria-current="page">
+            <span><mat-icon>verified_user</mat-icon>Forgot Password Requests</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/announcements" routerLinkActive="active" aria-current="page">
+            <mat-icon>spatial_audio_off</mat-icon><span>Announcements</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/leaves" routerLinkActive="active" aria-current="page">
+            <mat-icon>settings_accessibility</mat-icon><span>Leaves</span>
+          </a>
+        </li>
+      </ul>
+      <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+        <span class="nav-link px-3 userinfo text-capitalize" [matMenuTriggerFor]="menu" style="cursor: pointer;">
+
+          <img class="profile-photo" [src]="profileImage" />
+
+          {{user?.username}}
+        </span>
+        <mat-menu #menu="matMenu">
+          <button mat-menu-item (click)="userDetail()">
+            <mat-icon>perm_identity</mat-icon>
+            <span>User Profile</span>
+          </button>
+          <button mat-menu-item (click)="openLogout()">
+            <mat-icon>power_settings_new</mat-icon>
+            <span>Signout</span>
+          </button>
+        </mat-menu>
+      </ul>
+    </div>
+  </header>
+
+  <!--<header class="navbar navbar-dark sticky-top bg-dark p-0 shadow">
+  <a class="navbar-brand col-md-3 col-lg-2 me-0 px-3" [routerLink]="link">
+    AGARAM
+  </a>
+  <button class="navbar-toggler position-absolute d-md-none collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#sidebarMenu" aria-controls="sidebarMenu" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="navbar">
+    <div class="nav-item">
+      <a class="nav-link" routerLink="/admin-dashboard" routerLinkActive="active" aria-current="page">
+        <span>Dashboard</span>
+      </a>
+    </div>
+    <div class="nav-item">
+      <a class="nav-link" routerLink="/users" routerLinkActive="active">
+        <span data-feather="file"></span>
+        Users
+      </a>
+    </div>    
+    <div class="nav-item">
+      <a class="nav-link" routerLink="/transaction" routerLinkActive="active">
+        <span data-feather="file"></span>
+        Transactions
+      </a>
+    </div>
+    <div class="nav-item">
+      <a class="nav-link d-flex d-c" routerLink="/forgot-password-requests" routerLinkActive="active" aria-current="page">
+        <span>Forgot Password Requests</span>
+      </a>
+    </div>    
+  </div>
+  <div class="navbar-nav">
+    <div class="nav-item text-nowrap">
+      <a class="nav-link px-3" routerLink="/login" *ngIf="!isLoggedIn">Login</a>
+    </div>
+    <div class="nav-item text-nowrap" *ngIf="isLoggedIn">
+      <span class="nav-link px-3 userinfo text-capitalize" style="cursor: pointer;">{{user?.username}}</span>
+      <span class="nav-link px-3" style="cursor: pointer;" (click)="openLogout()">Signout</span>
+    </div>
+  </div>
+</header>-->
+
+  <div class="container-fluid">
+    <div class="row">
+      <!--<nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse">
+      <div class="position-sticky pt-3">
+        <ul class="nav flex-column">
+          <li class="nav-item">
+            <a class="nav-link d-flex d-c" routerLink="/admin-dashboard" routerLinkActive="active" aria-current="page">
+              <span>Dashboard</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/users" routerLinkActive="active">
+              <span data-feather="file"></span>
+              Users
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/transaction" routerLinkActive="active">
+              <span data-feather="file"></span>
+              Transactions
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link d-flex d-c" routerLink="/forgot-password-requests" routerLinkActive="active" aria-current="page">
+              <span>Forgot Password Requests</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </nav>-->
+      <main class="col-md-12 ms-sm-auto col-lg-12 px-md-4">
+        <div
+          class="d-flex flew-column justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-2">
+          <h1 class="h2">{{ heading }}</h1>
+        </div>
+        <ng-content></ng-content>
+      </main>
+    </div>
+  </div>
+</div>

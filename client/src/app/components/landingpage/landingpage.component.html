@@ -1,0 +1,77 @@
+<app-side-bar-user>  
+  <div>
+    <div class="row">
+      <div class="col-md-4">
+        <mat-card class="mb-2 data-view-card">
+          <div *ngIf="announcementloading" class="d-flex align-items-center justify-content-center">
+            <mat-spinner [diameter]="30"></mat-spinner>
+          </div>
+          <div>
+            <h3 class="text-center mb-3">Announcements</h3>
+            <div *ngFor="let obja of announcements">
+              <div class="row mb-4 border-bottom">
+                <div class="col">
+                  <p>{{obja.announcement}}</p>
+                </div>
+
+              </div>
+            </div>
+          </div>
+        </mat-card>
+      </div>
+      <!-- <div class="col-md-4">
+        <mat-card class="mb-2 data-view-card">
+          <div *ngIf="admincommandloading" class="d-flex align-items-center justify-content-center">
+            <mat-spinner [diameter]="30"></mat-spinner>
+          </div>
+          <div>
+            <h3 class="text-center mb-3">Admin Command</h3>
+            <div *ngIf="admincommands.length==0" class="no-data">
+              <h1><mat-icon>done_all</mat-icon></h1>
+              <h5 class="text-center">No admin command found</h5>
+            </div>
+            <div *ngFor="let obja of admincommands">
+              <div class="row mb-4 border-bottom">
+                <div class="col">
+                  <p>{{obja.admincommand}}</p>
+                </div>
+
+              </div>
+            </div>
+          </div>
+        </mat-card>
+      </div> -->
+      <div class="col-md-4">
+        <mat-card class="mb-2 data-view-card">
+          <div *ngIf="myworkloading" class="d-flex align-items-center justify-content-center">
+            <mat-spinner [diameter]="30"></mat-spinner>
+          </div>
+          <div>
+            <h3 class="text-center mb-3">My Work</h3>
+            <div *ngIf="mywork.length==0" class="no-data">
+              <h1><mat-icon>done_all</mat-icon></h1>
+              <h5 class="text-center">No Pending Work Found</h5>
+            </div>
+            <div *ngFor="let obja of mywork">
+              <div class="row mb-4 border-bottom pb-2">
+                <div class="col">
+                  <div class="">
+                    <h5>{{obja.article}}</h5>
+                    <div class="">
+                      
+                      <span [ngClass]="{'bg-warning': obja.status === 'ASSIGNED' || obja.status === 'UNASSIGNED', 'bg-danger' : obja.status === 'REJECTED', 'bg-success' : obja.status === 'CLOSED'|| obja.status === 'COMPLETED' }" class="badge bg-secondary float-start">{{obja.status}}</span>
+                      <span class="badge bg-secondary float-end">{{obja.createdAt|date}}</span>
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+          </div>
+        </mat-card>
+      </div>
+    </div>
+
+
+  </div>
+</app-side-bar-user>

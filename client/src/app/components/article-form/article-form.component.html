@@ -1,0 +1,347 @@
+<div>
+  <mat-dialog-content>
+    <form #createForm="ngForm">
+      <div class="row">
+        <h4 class="text-left" style="color: #5bc9a1">{{ data.title }}</h4>
+        <div class="col-12">
+          <div class="row">
+            <!-- <div class="col-12">
+              <mat-form-field appearance="outline" class="w-100">
+                <mat-label>Date</mat-label>
+                <input matInput [(ngModel)]="datefield" name="datefield" [matDatepicker]="spicker" #datefieldTemp="ngModel" required>
+                <mat-hint>MM/DD/YYYY</mat-hint>
+                <mat-datepicker-toggle matSuffix [for]="spicker"></mat-datepicker-toggle>
+                <mat-datepicker #spicker></mat-datepicker>
+                <mat-error
+                  *ngIf="datefieldTemp.invalid &&
+                    (datefieldTemp.dirty || datefieldTemp.touched)"
+                  >Date is required</mat-error
+                >
+              </mat-form-field>
+            </div> -->
+            
+            <div class="col-12" *ngIf="!fromNonAdmin">
+              <mat-form-field appearance="outline" class="w-100">
+                <mat-label>Client</mat-label>
+                <input
+                  matInput
+                  [disabled]="blnUpdateArticle && fromNonAdmin && !IsCreatedByMe"
+                  placeholder="Client"
+                  name="client"
+                  [(ngModel)]="client"
+                  #clientTemp="ngModel"
+                  required
+                />
+                <mat-error
+                  *ngIf="clientTemp.invalid &&
+                    (clientTemp.dirty || clientTemp.touched)"
+                  >Client is required</mat-error
+                >
+              </mat-form-field>
+            </div>            
+            <div class="col-12">
+              <mat-form-field appearance="outline" class="w-100">
+                <mat-label>Batch/JOB ID</mat-label>
+                <input
+                  matInput
+                  [disabled]="blnUpdateArticle && fromNonAdmin && !IsCreatedByMe"
+                  placeholder="Batch"
+                  name="batch"
+                  [(ngModel)]="batch"
+                  #batchTemp="ngModel"
+                  required
+                />
+                <mat-error
+                  *ngIf="batchTemp.invalid &&
+                    (batchTemp.dirty || batchTemp.touched)"
+                  >Batch/JOB ID is required</mat-error
+                >
+              </mat-form-field>
+            </div>
+
+            <!-- <div class="col-12">
+              <mat-form-field appearance="outline" class="w-100">
+                <mat-label>Article Type</mat-label>
+                <input
+                  matInput
+                  placeholder="Article Type"
+                  name="articleType"
+                  [(ngModel)]="articleType"
+                  #articleTypeTemp="ngModel"
+                  required
+                />
+                <mat-error
+                  *ngIf="articleTypeTemp.invalid &&
+                    (articleTypeTemp.dirty || articleTypeTemp.touched)"
+                  >Article Type is required</mat-error
+                >
+              </mat-form-field>
+            </div> -->
+            <div class="col-12">
+              <mat-form-field appearance="outline" class="w-100">
+                <mat-label>Article/ISBN</mat-label>
+                <input
+                  matInput
+                  [disabled]="blnUpdateArticle && fromNonAdmin && !IsCreatedByMe"
+                  placeholder="Article"
+                  name="article"
+                  [(ngModel)]="article"
+                  #articleTemp="ngModel"
+                  required
+                />
+                <mat-error
+                  *ngIf="articleTemp.invalid &&
+                    (articleTemp.dirty || articleTemp.touched)"
+                  >Article/ISBN is required</mat-error
+                >
+              </mat-form-field>
+            </div>
+            <div class="col-12">
+              <mat-form-field appearance="outline" class="w-100">
+                <mat-label>Pages</mat-label>
+                <input
+                  matInput
+                  [disabled]="blnUpdateArticle && fromNonAdmin && !IsCreatedByMe"
+                  placeholder="Pages"
+                  name="pages"
+                  type="number"
+                  [(ngModel)]="pages"
+                  #pageTemp="ngModel"
+                  required
+                />
+                <mat-error
+                  *ngIf="pageTemp.invalid &&
+                    (pageTemp.dirty || pageTemp.touched)"
+                  >Pages is required</mat-error
+                >
+              </mat-form-field>
+            </div>
+
+
+            <div class="col-12">
+              <mat-form-field appearance="outline">
+                <mat-label>Input Type</mat-label>
+                <mat-select [(ngModel)]="inputType" name="inputType" [disabled]="blnUpdateArticle && fromNonAdmin && !IsCreatedByMe">
+                  <mat-option *ngFor="let option of inputTypeOptions" [value]="option">
+                    {{option}}
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
+            </div>
+
+
+            <div class="col-12">
+              <mat-form-field appearance="outline">
+                <mat-label>Complexity</mat-label>
+                <mat-select [(ngModel)]="complexity" name="complexity" [disabled]="blnUpdateArticle && fromNonAdmin && !IsCreatedByMe">
+                  <mat-option *ngFor="let option of complexityOptions" [value]="option">
+                    {{option}}
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
+            </div>
+
+
+            <div class="col-12">
+              <mat-form-field appearance="outline">
+                <mat-label>Process Type</mat-label>
+                <mat-select [(ngModel)]="processType" name="processType" [disabled]="blnUpdateArticle && fromNonAdmin && !IsCreatedByMe"> 
+                  <mat-option *ngFor="let option of processTypeOptions" [value]="option">
+                    {{option}}
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
+            </div>
+
+            <div class="col-12">
+              <mat-form-field appearance="outline" class="w-100">
+                <mat-label>Math Count</mat-label>
+                <input
+                  matInput
+                  placeholder="Math Count"
+                  name="mathCount"
+                  [(ngModel)]="mathCount"
+                  #mathCountTemp="ngModel"
+                />
+                <mat-error
+                  *ngIf="mathCountTemp.invalid &&
+                    (mathCountTemp.dirty || mathCountTemp.touched)"
+                  >Math Count is required</mat-error
+                >
+              </mat-form-field>
+            </div>
+
+            <div class="col-12">
+              <mat-form-field appearance="outline" class="w-100">
+                <mat-label>Images Count</mat-label>
+                <input
+                  matInput                  
+                  placeholder="Images Count"
+                  name="imagesCount"
+                  [(ngModel)]="imagesCount"
+                  #imagesCountTemp="ngModel"
+                />
+                <mat-error
+                  *ngIf="imagesCountTemp.invalid &&
+                    (imagesCountTemp.dirty || imagesCountTemp.touched)"
+                  >Images Count	is required</mat-error
+                >
+              </mat-form-field>
+            </div>
+
+            <!-- <div class="col-12">
+              <mat-form-field appearance="outline" class="w-100">
+                <mat-label>Process Type</mat-label>
+                <input
+                  matInput
+                  placeholder="Process Tyoe"
+                  name="processType"
+                  [(ngModel)]="processType"
+                  #processTypeTemp="ngModel"
+                  required
+                />
+                <mat-error
+                  *ngIf="processTypeTemp.invalid &&
+                    (processTypeTemp.dirty || processTypeTemp.touched)"
+                  >Process Type is required</mat-error
+                >
+              </mat-form-field>
+            </div> -->
+
+            <div class="col-12" *ngIf="!fromNonAdmin">
+              <mat-form-field appearance="outline" class="w-100">
+                <mat-label>Assigned To</mat-label>
+                <mat-select #assignedToTemp="ngModel" required [(ngModel)]="assignedTo" name="assignedTo">
+                  <mat-option *ngFor="let option of users" [value]="option._id">
+                    {{option.username}} - {{option.employeeId}} ({{option.type}})
+                  </mat-option>
+                </mat-select>
+                <mat-error
+                  *ngIf="assignedToTemp.invalid &&
+                    (assignedToTemp.dirty || assignedToTemp.touched)"
+                  >Assigned To is required</mat-error
+                >
+              </mat-form-field>
+            </div>
+
+            <div class="col-12" *ngIf="!fromNonAdmin">
+              <mat-form-field appearance="outline" class="w-100">
+                <mat-label>Target Date</mat-label>
+                <input matInput [(ngModel)]="targetDate" name="targetDate" [matDatepicker]="spicker12" #targetDateTemp="ngModel">
+                <mat-hint>MM/DD/YYYY</mat-hint>
+                <mat-datepicker-toggle matSuffix [for]="spicker12"></mat-datepicker-toggle>
+                <mat-datepicker #spicker12></mat-datepicker>
+                <mat-error
+                  *ngIf="targetDateTemp.invalid &&
+                    (targetDateTemp.dirty || targetDateTemp.touched)"
+                  >Target Date is required</mat-error
+                >
+              </mat-form-field>
+            </div>
+
+
+            <div class="col-12" *ngIf="data.updateArticle && fromNonAdmin">
+              <mat-form-field appearance="outline">
+                <mat-label>Status</mat-label>
+                <mat-select [(ngModel)]="userstatus" name="food">
+                  <mat-option *ngFor="let option of userstatusOptions" [value]="option">
+                    {{option}}
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
+            </div>
+
+            <div class="col-12" *ngIf="data.updateArticle && !fromNonAdmin">
+              <mat-form-field appearance="outline">
+                <mat-label>Status</mat-label>
+                <mat-select [(ngModel)]="status" name="food">
+                  <mat-option *ngFor="let option of statusOptions" [value]="option">
+                    {{option}}
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
+            </div>
+
+
+            <!-- <div class="col-12">
+              <mat-form-field appearance="outline" class="w-100">
+                <mat-label>Closed Date</mat-label>
+                <input matInput [(ngModel)]="closedDate" name="closedDate" [matDatepicker]="spicker" #closedDateTemp="ngModel">
+                <mat-hint>MM/DD/YYYY</mat-hint>
+                <mat-datepicker-toggle matSuffix [for]="spicker"></mat-datepicker-toggle>
+                <mat-datepicker #spicker></mat-datepicker>
+                <mat-error
+                  *ngIf="closedDateTemp.invalid &&
+                    (closedDateTemp.dirty || closedDateTemp.touched)"
+                  >Closed Date is required</mat-error
+                >
+              </mat-form-field>
+            </div> -->
+
+            <div class="col-12">
+              <mat-form-field appearance="outline" class="w-100">
+                <mat-label>Completed Date</mat-label>
+                <input matInput [(ngModel)]="completedDate" name="completedDate" [matDatepicker]="spicker1" #completedDateTemp="ngModel">
+                <mat-hint>MM/DD/YYYY</mat-hint>
+                <mat-datepicker-toggle matSuffix [for]="spicker1"></mat-datepicker-toggle>
+                <mat-datepicker #spicker1></mat-datepicker>
+                <mat-error
+                  *ngIf="completedDateTemp.invalid &&
+                    (completedDateTemp.dirty || completedDateTemp.touched)"
+                  >Completed Date is required</mat-error
+                >
+              </mat-form-field>
+            </div>
+            <div class="col-12" *ngIf="fromNonAdmin && data.updateArticle && !AdminCommand">
+              <div><label>Admin Command</label></div>
+              <span>{{AdminCommand}}</span>
+            </div>
+            <div class="col-12" *ngIf="!fromNonAdmin">
+              <mat-form-field appearance="outline" class="w-100">
+                <mat-label>Admin Command</mat-label>
+                <input
+                  matInput
+                  [disabled]="blnUpdateArticle && fromNonAdmin && !IsCreatedByMe"
+                  placeholder="Admin Command"
+                  name="AdminCommand"
+                  [(ngModel)]="AdminCommand"
+                  #AdminCommandTemp="ngModel"
+                />
+              </mat-form-field>
+            </div>            
+
+          </div>
+        </div>
+      </div>
+    </form>
+  </mat-dialog-content>
+  <mat-dialog-actions>
+    <button *ngIf="data.updateArticle" mat-raised-button color="primary" (click)="updateArticle()" [disabled]="!createForm.valid">Save</button>
+    <button *ngIf="!data.updateArticle" mat-raised-button color="primary" (click)="onSave()" [disabled]="!createForm.valid">Save</button>
+    <button mat-raised-button color="warn" matDialogClose>Close</button>
+  </mat-dialog-actions>
+</div>
+
+<!-- <div *ngIf="data.updateArticle">
+  <mat-dialog-content>
+    <form #updateForm="ngForm">
+      <div class="row">
+        <div class="col-12">
+          <mat-form-field appearance="outline">
+            <mat-label>Status</mat-label>
+            <mat-select [(ngModel)]="status" name="food">
+              <mat-option *ngFor="let option of statusOptions" [value]="option">
+                {{option}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+      </div>
+    </form>
+  </mat-dialog-content>
+  <mat-dialog-actions>
+    <button mat-raised-button color="primary" (click)="updateArticle()" [disabled]="!updateForm.valid">Save</button>
+    <button mat-raised-button color="warn" matDialogClose>Close</button>
+  </mat-dialog-actions>
+</div> -->
+

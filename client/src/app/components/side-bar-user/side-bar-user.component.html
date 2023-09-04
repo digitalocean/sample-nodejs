@@ -1,0 +1,76 @@
+<div>
+  <header class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
+      <a class="navbar-brand col-md-3 col-lg-2 me-0 px-3" [routerLink]="link">
+        <img src="/assets/logo.png" width="200" />
+      </a>
+      <ul class="navbar-nav mt-2 mt-lg-0">
+        <li class="nav-item active">
+          <a class="nav-link" routerLink="/landingpage" routerLinkActive="active" aria-current="page">
+            <mat-icon>home</mat-icon><span>Home</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/non-admin-dashboard" routerLinkActive="active" aria-current="page">
+            <mat-icon>leaderboard</mat-icon><span>Dashboard</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/myleaves" routerLinkActive="active" aria-current="page">
+            <mat-icon>settings_accessibility</mat-icon><span>Leave</span>
+          </a>
+        </li>
+      </ul>
+      <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+        <span class="nav-link px-3 userinfo text-capitalize" [matMenuTriggerFor]="menu" style="cursor: pointer;">
+          <img class="profile-photo" [src]="profileImage" />
+          {{user?.username}}
+        </span>
+        <mat-menu #menu="matMenu">
+          <button mat-menu-item (click)="userDetail()">
+            <mat-icon>perm_identity</mat-icon>
+            <span>User Profile</span>
+          </button>
+          <button mat-menu-item (click)="openLogout()">
+            <mat-icon>power_settings_new</mat-icon>
+            <span>Signout</span>
+          </button>
+        </mat-menu>
+      </ul>
+    </div>
+  </header>
+<div class="container-fluid">
+  <div class="row">
+    <main class="col-md-12 ms-sm-auto col-lg-12 px-md-4">
+      <div class="d-flex flew-column justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-1">
+        <h1 class="h2">{{ heading }}</h1>
+      </div>
+      <ng-content></ng-content>
+    </main>
+  </div>
+</div>
+</div>
+<!-- <div class="container-fluid">
+  <div class="row">
+   <nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse">
+      <div class="position-sticky pt-3">
+        <ul class="nav flex-column">
+          <li class="nav-item">
+            <a class="nav-link d-flex d-c" routerLink="/non-admin-dashboard" routerLinkActive="active" aria-current="page">
+              <span>Dashboard</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+    <main class="col-md-12 ms-sm-auto col-lg-12 px-md-4">
+      <div class="d-flex flew-column justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3">
+        <h1 class="h2">{{ heading }}</h1>
+      </div>
+      <ng-content></ng-content>
+    </main>
+  </div>
+</div> -->

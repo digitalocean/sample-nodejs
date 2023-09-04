@@ -1,0 +1,241 @@
+/* You can add global styles to this file, and also import other style files */
+@font-face {
+  font-family: 'Raleway';
+  src: url('./assets/OpenSans-Regular.ttf');
+}
+
+:root {
+  --bs-body-font-family: 'Raleway', sans-serif;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  // font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+* {
+  font-family: 'Raleway', sans-serif;
+}
+
+body {
+  font-size: 1rem;
+}
+
+.feather {
+  width: 16px;
+  height: 16px;
+  vertical-align: text-bottom;
+}
+
+/*
+ * Sidebar
+ */
+
+.sidebar {
+  position: fixed;
+  top: 0;
+  /* rtl:raw:
+  right: 0;
+  */
+  bottom: 0;
+  /* rtl:remove */
+  left: 0;
+  z-index: 100;
+  /* Behind the navbar */
+  padding: 70px 0 0;
+  /* Height of navbar */
+  box-shadow: inset -1px 0 0 rgba(0, 0, 0, 0.1);
+  background: #234254 !important;
+}
+
+@media (max-width: 767.98px) {
+  .sidebar {
+    top: 5rem;
+  }
+}
+
+.sidebar-sticky {
+  position: relative;
+  top: 0;
+  height: calc(100vh - 70px);
+  padding-top: 0.5rem;
+  overflow-x: hidden;
+  overflow-y: auto;
+  /* Scrollable contents if viewport is shorter than content. */
+}
+
+.sidebar .nav-link {
+  font-weight: 500;
+  color: #fff;
+  border-bottom: 1px solid #E24C11;
+  padding-top: 1.25rem;
+  padding-bottom: 1.25rem;
+}
+
+.sidebar .nav-link .feather {
+  margin-right: 4px;
+  color: #727272;
+}
+
+.sidebar .nav-link.active,
+.sidebar .nav-link:hover {
+  background: #E24C11;
+}
+
+.sidebar .nav-link:hover .feather,
+.sidebar .nav-link.active .feather {
+  color: inherit;
+}
+
+.sidebar-heading {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+}
+
+/*
+ * Navbar
+ */
+
+.navbar-brand {
+  // padding-top: 1.25rem;
+  // padding-bottom: 1.25rem;
+  font-size: 1.5rem;
+  color: #fff !important;
+  // box-shadow: inset -1px 0 0 rgba(0, 0, 0, 0.25);
+  font-weight: 800;
+  text-align: center;
+}
+
+.navbar .navbar-toggler {
+  top: 0.25rem;
+  right: 1rem;
+}
+
+.navbar .form-control {
+  padding: 0.75rem 1rem;
+  border-width: 0;
+  border-radius: 0;
+}
+
+.form-control-dark {
+  color: #fff;
+  background-color: rgba(255, 255, 255, 0.1);
+  border-color: rgba(255, 255, 255, 0.1);
+}
+
+.form-control-dark:focus {
+  border-color: transparent;
+  box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.25);
+}
+
+.icon-size-small {
+  transform: scale(0.7);
+}
+
+.very-good {
+  color: #4bdb09;
+}
+
+.good {
+  color: #36a303;
+}
+
+.medium {
+  color: #fcfc08;
+}
+
+.poor {
+  color: #bda102;
+}
+
+.bad {
+  color: #bd2102;
+}
+
+header.bg-dark {
+  background: #234254 !important;
+  min-height: 70px;
+}
+
+.page-heading {
+  text-align: center;
+  font-size: 20px;
+  color: #333;
+  font-weight: bold;
+  margin-bottom: 20px;
+  position: relative;
+  padding-bottom: 10px;
+}
+
+.page-heading:after {
+  position: absolute;
+  left: 50%;
+  width: 150px;
+  height: 2px;
+  content: '';
+  border-radius: 5px;
+  background: #E24C11;
+  bottom: 0;
+  margin-left: -75px;
+}
+
+@media only screen and (max-width: 767px) {
+  .navbar-nav {
+    padding-right: 70px;
+  }
+}
+
+.navbar-nav .nav-link {
+  display: inline-block;
+  color: #fff;
+  font-weight: bold;
+}
+
+.userinfo mat-icon {
+  font-size: 28px;
+}
+
+.mat-expansion-panel-header.mat-expanded {
+  height: auto !important;
+  margin-top: 10px;
+}
+
+.navbar-dark .navbar-nav .nav-link {
+  border-bottom: 2px solid transparent;
+  margin-right: 10px;
+}
+
+.navbar-dark .navbar-nav .show>.nav-link,
+.navbar-dark .navbar-nav .nav-link.active,
+.navbar-dark .navbar-nav .nav-link:hover {
+  border-bottom: 2px solid #fff;
+}
+
+thead,
+tbody,
+tfoot,
+tr,
+td,
+th {
+  border-color: #234254;
+}
+.profile-photo {
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  border: 1px solid #fff;
+}
+
+.mat-form-field-appearance-outline .mat-form-field-outline {
+  color: #234254;
+}
+
+/* Font color */
+input.mat-input-element {
+  color: #234254;
+}

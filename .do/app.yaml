@@ -4,5 +4,5 @@ services:
   github:
     branch: main
     deploy_on_push: true
-    repo: digitalocean/sample-nodejs
+    repo: dbrian57/sample-nodejs
   name: sample-nodejs

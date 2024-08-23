@@ -1,12 +1,3 @@
-name: App Platform Preview
-
-on:
-  pull_request:
-    branches: [main]
-
-permissions:
-  pull-requests: write
-
 jobs:
   test:
     name: preview
@@ -21,9 +12,9 @@ jobs:
         with:
           deploy_pr_preview: "true"
           token: ${{ secrets.DIGITALOCEAN_ACCESS_TOKEN }}
-      
+
       - name: Log deploy output
-        run: echo "${{ steps.deploy.outputs.app }}"
+        run: echo "Deploy output: ${{ steps.deploy.outputs.app }}"
 
       - uses: actions/github-script@v7
         env:
@@ -31,12 +22,13 @@ jobs:
           DEPLOY_LOGS: ${{ steps.deploy.outputs.deploy_logs }}
         with:
           script: |
-            const { BUILD_LOGS, DEPLOY_LOGS } = process.env;
+            const appOutput = JSON.parse(`{{ steps.deploy.outputs.app }}`);
+            const liveUrl = appOutput.default_ingress || "URL not found";
             github.rest.issues.createComment({
               issue_number: context.issue.number,
               owner: context.repo.owner,
               repo: context.repo.repo,
-              body: `🚀🚀🚀 The app was successfully deployed at ${{ steps.deploy.outputs.app.live_url }}.`
+              body: `🚀🚀🚀 The app was successfully deployed at ${liveUrl}.`
             });
 
       - uses: actions/github-script@v7

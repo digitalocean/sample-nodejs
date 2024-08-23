@@ -1,16 +1,35 @@
-name: Update App
+name: Build, Push and Deploy a Docker Image
 
 on:
  push:
-   branches: main
+   branches: [main]
 
 jobs:
- deploy-app:
+ build-push-deploy-image:
    runs-on: ubuntu-latest
+   permissions:
+     contents: read
+     packages: write
+     id-token: write
    steps:
      - name: Checkout repository
        uses: actions/checkout@v4
+     - name: Log in to the Container registry
+       uses: docker/login-action@v3.3.0
+       with:
+         registry: ghcr.io
+         username: ${{ github.actor }}
+         password: ${{ secrets.YOUR_GITHUB_TOKEN }}
+     - name: Build and push Docker image
+       id: push
+       uses: docker/build-push-action@v6.5.0
+       with:
+         context: .
+         push: true
+         tags: ghcr.io/${{ github.repository }}:latest
      - name: Deploy the app
        uses: digitalocean/app_action/deploy@v2
+       env:
+         SAMPLE_DIGEST: ${{ steps.push.outputs.digest }}
        with:
          token: ${{ secrets.DIGITALOCEAN_ACCESS_TOKEN }}

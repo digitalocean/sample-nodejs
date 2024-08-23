@@ -19,7 +19,7 @@ jobs:
         uses: digitalocean/app_action/deploy@v2
         with:
           deploy_pr_preview: "true"
-          token: ${{ secrets.YOUR_DIGITALOCEAN_ACCESS_TOKEN_VARIABLE_NAME }}
+          token: ${{ secrets.DIGITALOCEAN_ACCESS_TOKEN }}
       - uses: actions/github-script@v7
         env:
           BUILD_LOGS: ${{ steps.deploy.outputs.build_logs }}

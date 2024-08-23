@@ -4,5 +4,5 @@ services:
   github:
     branch: main
     deploy_on_push: true
-    repo: dbrian57/sample-nodejs
+    repo: dbrian57/sample-nodejs-workflow
   name: sample-nodejs

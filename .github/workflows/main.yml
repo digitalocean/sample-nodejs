@@ -2,7 +2,7 @@ name: Update App
 
 on:
  push:
-   branches: [test]
+   branches: main
 
 jobs:
  deploy-app:

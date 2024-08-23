@@ -22,13 +22,13 @@ jobs:
           DEPLOY_LOGS: ${{ steps.deploy.outputs.deploy_logs }}
         with:
           script: |
-            const appOutput = JSON.parse(`{{ steps.deploy.outputs.app }}`);
+            const appOutput = JSON.parse('${{ steps.deploy.outputs.app }}');
             const liveUrl = appOutput.default_ingress || "URL not found";
             github.rest.issues.createComment({
               issue_number: context.issue.number,
               owner: context.repo.owner,
               repo: context.repo.repo,
-              body: `🚀🚀🚀 The app was successfully deployed at ${liveUrl}.`
+              body: "🚀🚀🚀 The app was successfully deployed at " + liveUrl + "."
             });
 
       - uses: actions/github-script@v7
@@ -39,7 +39,7 @@ jobs:
               issue_number: context.issue.number,
               owner: context.repo.owner,
               repo: context.repo.repo,
-              body: `The app failed to be deployed. Logs can be found [here](https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}).` +
+              body: "The app failed to be deployed. Logs can be found [here](https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }})." +
                     "\n## Logs\n<details>\n<summary>Build logs</summary>\n\n" + 
                     "```\n${{ env.BUILD_LOGS }}\n```\n\n" +
                     "<summary>Deploy logs</summary>\n\n" + 

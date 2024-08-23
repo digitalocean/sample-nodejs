@@ -21,6 +21,9 @@ jobs:
         with:
           deploy_pr_preview: "true"
           token: ${{ secrets.DIGITALOCEAN_ACCESS_TOKEN }}
+      
+      - name: Log deploy output
+        run: echo "${{ steps.deploy.outputs.app }}"
 
       - uses: actions/github-script@v7
         env:

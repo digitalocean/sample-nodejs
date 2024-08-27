@@ -1,8 +1,0 @@
-name: sample-nodejs
-services:
-- environment_slug: node-js
-  github:
-    branch: main
-    deploy_on_push: true
-    repo: dbrian57/sample-nodejs-workflow
-  name: sample-nodejs

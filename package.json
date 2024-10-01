@@ -17,7 +17,7 @@
     "mersenne-twister": "^1.1.0",
     "morgan": "~1.9.1",
     "pug": "^2.0.4",
-    "uglify-js": "^2.6.0"
+    "uglify-js": "^2.6.0",
     "lodash": "4.6.0" 
   }
 }
